@@ -24,12 +24,23 @@ If not provided via argument, ask:
 
 ### 2. Run the Script
 
+Locate the script relative to this skill file, then run it:
+
 ```bash
+SCRIPT="$(dirname "$(realpath "$0")")/scripts/generate_prod_deployment_announcement.py"
+
 # Preview only — show announcement in terminal
-python3 ./.github/skills/generate-prod-deployment-announcement/scripts/generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM
+python3 "$SCRIPT" YYYY-MM-DD HH:MM
 
 # Generate + post directly to Teams (Funding SRE channel)
-python3 ./.github/skills/generate-prod-deployment-announcement/scripts/generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM --post
+python3 "$SCRIPT" YYYY-MM-DD HH:MM --post
+```
+
+When running from an agent context, resolve the script path by finding this skill's directory in the workspace:
+
+```bash
+# From the workspace root
+python3 .github/skills/generate-prod-deployment-announcement/scripts/generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM
 ```
 
 The script:
