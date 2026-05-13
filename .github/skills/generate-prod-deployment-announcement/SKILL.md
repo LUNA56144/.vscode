@@ -54,7 +54,26 @@ The script:
 
 ### 3. Present the Output
 
-Display the full Teams announcement from the script output (between the `TEAMS ANNOUNCEMENT` markers), followed by the deployment summary. The announcement is ready to copy and paste into Teams.
+Display the full Teams announcement from the script output (between the `TEAMS ANNOUNCEMENT` markers), followed by the deployment summary.
+
+### 4. Confirm Before Posting
+
+After displaying the announcement, **always ask the user for explicit confirmation** before posting to Teams:
+
+> "Would you like me to post this announcement to the Funding SRE Teams channel now?"
+
+- If **confirmed** → proceed to Step 5
+- If **declined** → inform the user the announcement is ready to copy/paste manually and stop
+
+### 5. Post to Teams
+
+Once confirmed, run the script with the `--post` flag:
+
+```bash
+python3 .github/skills/generate-prod-deployment-announcement/scripts/generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM --post
+```
+
+Report success or failure from the script output. On failure (non-zero exit or error message), display the error and advise the user to check that `TEAMS_WEBHOOK_URL` is set in `~/.zshrc`.
 
 ## Repositories Scanned
 
