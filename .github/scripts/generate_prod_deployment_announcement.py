@@ -8,6 +8,7 @@ across all Funding repositories by comparing git tags and workflow runs.
 
 import subprocess
 import sys
+import os
 from datetime import datetime
 import re
 
@@ -320,17 +321,44 @@ Thanks!"""
     
     return announcement
 
+def post_to_teams(announcement, webhook_url):
+    """Post announcement to Teams channel via Power Automate webhook"""
+    try:
+        import urllib.request
+        import json
+
+        payload = json.dumps({"text": announcement}).encode("utf-8")
+        req = urllib.request.Request(
+            webhook_url,
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            if resp.status in (200, 202):
+                print("✅ Announcement posted to Teams successfully!")
+            else:
+                print(f"⚠️  Unexpected response: HTTP {resp.status}")
+    except Exception as e:
+        print(f"❌ Failed to post to Teams: {e}")
+        print("   Check that TEAMS_WEBHOOK_URL is set and the workflow is active.")
+
+
 def main():
     """Main execution flow"""
     # Check GitHub authentication
     if not check_gh_auth():
         print("❌ GitHub CLI not authenticated. Please run: gh auth login")
         sys.exit(1)
-    
+
+    # Parse --post flag
+    post_to_channel = "--post" in sys.argv
+    args = [a for a in sys.argv[1:] if a != "--post"]
+
     # Check for command line arguments
-    if len(sys.argv) == 3:
-        deployment_date = sys.argv[1]
-        deployment_time = sys.argv[2]
+    if len(args) == 2:
+        deployment_date = args[0]
+        deployment_time = args[1]
         
         # Validate date format
         try:
@@ -350,8 +378,8 @@ def main():
             print("❌ Invalid time format. Use HH:MM (24-hour)")
             sys.exit(1)
     else:
-        print("Usage: generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM")
-        print("Example: generate_prod_deployment_announcement.py 2025-12-02 22:00")
+        print("Usage: generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM [--post]")
+        print("Example: generate_prod_deployment_announcement.py 2025-12-02 22:00 --post")
         sys.exit(1)
     
     # Scan repositories
@@ -421,6 +449,17 @@ def main():
     if total_blocked_versions > 0:
         print(f"   - {total_blocked_versions} versions blocked (awaiting stage deployment)")
     print(f"   - Scheduled for: {format_date(deployment_date)} at {format_time(deployment_time)}")
+
+    if post_to_channel:
+        webhook_url = os.environ.get("TEAMS_WEBHOOK_URL")
+        if not webhook_url:
+            print("\n❌ TEAMS_WEBHOOK_URL is not set. Add it to ~/.zshrc and run: source ~/.zshrc")
+            sys.exit(1)
+        print()
+        post_to_teams(announcement, webhook_url)
+    else:
+        print()
+        print("💡 Tip: Run with --post to send directly to Teams.")
 
 if __name__ == "__main__":
     main()

@@ -12,6 +12,7 @@ Scans all 11 `im-funding` infrastructure repositories, identifies stage-validate
 
 - `gh` CLI authenticated (`gh auth status`)
 - Python 3.6+
+- `TEAMS_WEBHOOK_URL` env var set in `~/.zshrc` (required only for `--post`)
 
 ## Procedure
 
@@ -24,7 +25,11 @@ If not provided via argument, ask:
 ### 2. Run the Script
 
 ```bash
+# Preview only — show announcement in terminal
 python3 ./.github/skills/generate-prod-deployment-announcement/scripts/generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM
+
+# Generate + post directly to Teams (Funding SRE channel)
+python3 ./.github/skills/generate-prod-deployment-announcement/scripts/generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM --post
 ```
 
 The script:
