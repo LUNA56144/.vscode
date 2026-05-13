@@ -1,0 +1,426 @@
+#!/usr/bin/env python3
+"""
+Production Deployment Announcement Generator
+
+Generates Teams markdown announcements for production infrastructure deployments
+across all Funding repositories by comparing git tags and workflow runs.
+"""
+
+import subprocess
+import sys
+from datetime import datetime
+import re
+
+# Define all 11 funding repositories
+REPOS = [
+    "im-funding/client-data-azure-infrastructure",
+    "im-funding/client-guides-infrastructure",
+    "im-funding/client-implementations-infra",
+    "im-funding/funding-calculation",
+    "im-funding/funding-communication-infrastructure",
+    "im-funding/funding-data-transfer-infrastructure",
+    "im-funding/funding-reimbursement-infrastructure",
+    "im-funding/log-file-analysis-infrastructure",
+    "im-funding/funding-eligibility-infrastructure",
+    "im-funding/funding-enrollment-support-infrastructure",
+    "im-funding/funding-qualification-infrastructure",
+]
+
+def run_gh_command(cmd, timeout=30):
+    """Run a GitHub CLI command and return output"""
+    try:
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=timeout)
+        return result.stdout.strip() if result.returncode == 0 else None
+    except subprocess.TimeoutExpired:
+        return None
+
+def check_gh_auth():
+    """Verify GitHub CLI is authenticated"""
+    result = subprocess.run(['gh', 'auth', 'status'], capture_output=True, text=True)
+    return result.returncode == 0
+
+def get_last_deployed_version(repo, environment='prod'):
+    """Find the last successful deployment version for given environment using API"""
+    # Get recent workflow runs
+    cmd = f'gh api repos/{repo}/actions/workflows --jq \'.workflows[] | select(.name == "Apply Terraform") | .id\' 2>/dev/null | head -1'
+    workflow_id = run_gh_command(cmd)
+    
+    if not workflow_id:
+        return None
+    
+    # Get workflow runs and filter for environment deployments
+    cmd = f'gh api repos/{repo}/actions/workflows/{workflow_id}/runs --jq \'.workflow_runs[] | select(.conclusion == "success") | {{name: .name, created: .created_at}}\' -X GET --paginate 2>/dev/null | head -200'
+    output = run_gh_command(cmd, timeout=60)
+    
+    if not output:
+        return None
+    
+    # Parse JSON output and look for environment deployments
+    import json
+    for line in output.split('\n'):
+        if not line.strip():
+            continue
+        try:
+            run_data = json.loads(line)
+            run_name = run_data.get('name', '')
+            
+            # Match various environment patterns:
+            # - "Apply prod terraform from v1.2.3"
+            # - "Apply Terraform (prod) [v1.2.3]"
+            # - "Apply stage terraform from v1.2.3"
+            # - "Apply Terraform (stage) [v1.2.3]"
+            # Exclude prod-secondary and stage-secondary
+            env_pattern = rf'\b{environment}\b'
+            secondary_pattern = rf'\b{environment}-secondary\b'
+            
+            if re.search(env_pattern, run_name, re.IGNORECASE) and not re.search(secondary_pattern, run_name, re.IGNORECASE):
+                match = re.search(r'v\d+\.\d+\.\d+', run_name)
+                if match:
+                    return match.group(0)
+        except json.JSONDecodeError:
+            continue
+    
+    return None
+
+def get_all_version_tags(repo):
+    """Fetch all version tags from repository"""
+    cmd = f'gh api repos/{repo}/tags --jq \'.[].name\' 2>/dev/null | grep -E "^v[0-9]+\\.[0-9]+\\.[0-9]+$"'
+    output = run_gh_command(cmd)
+    
+    if output:
+        return [tag.strip() for tag in output.split('\n') if tag.strip()]
+    return []
+
+def get_commit_message(repo, tag):
+    """Get commit message for a specific tag"""
+    cmd = f'gh api repos/{repo}/git/refs/tags/{tag} --jq ".object.sha" 2>/dev/null'
+    sha = run_gh_command(cmd)
+    
+    if not sha:
+        cmd = f'gh api repos/{repo}/tags --jq \'.[] | select(.name=="{tag}") | .commit.sha\' 2>/dev/null'
+        sha = run_gh_command(cmd)
+    
+    if sha:
+        cmd = f'gh api repos/{repo}/commits/{sha} --jq ".commit.message" 2>/dev/null'
+        message = run_gh_command(cmd)
+        return message if message else ""
+    return ""
+
+def extract_pr_title(commit_message):
+    """Extract PR title from commit message"""
+    if not commit_message:
+        return None
+    
+    lines = commit_message.split('\n')
+    
+    # Handle "Merge pull request #123" format
+    if len(lines) > 1 and 'Merge pull request' in lines[0]:
+        for i, line in enumerate(lines):
+            if i > 0 and line.strip():
+                return line.strip()
+    
+    # Handle direct PR title format: "Title (#123)"
+    # Extract first line and remove PR number
+    first_line = lines[0].strip()
+    if first_line:
+        # Remove PR number pattern like "(#123)" from the end
+        title = re.sub(r'\s*\(#\d+\)\s*$', '', first_line)
+        return title if title else None
+    
+    return None
+
+def format_date(date_str):
+    """Convert YYYY-MM-DD to 'Day, MM/DD/YY' format"""
+    date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+    day_name = date_obj.strftime('%A')
+    formatted = date_obj.strftime('%m/%d/%y')
+    return f"{day_name}, {formatted}"
+
+def format_time(time_str):
+    """Convert HH:MM (24-hour) to H:MM P.M./A.M. MT format"""
+    time_obj = datetime.strptime(time_str, '%H:%M')
+    hour = time_obj.hour
+    minute = time_obj.minute
+    
+    if hour == 0:
+        return f"12:{minute:02d} A.M. MT"
+    elif hour < 12:
+        return f"{hour}:{minute:02d} A.M. MT"
+    elif hour == 12:
+        return f"12:{minute:02d} P.M. MT"
+    else:
+        return f"{hour-12}:{minute:02d} P.M. MT"
+
+def parse_version(version_str):
+    """Parse semantic version string into tuple of integers for comparison"""
+    try:
+        # Remove 'v' prefix and split by '.'
+        clean_version = version_str.lstrip('v')
+        parts = clean_version.split('.')
+        return tuple(int(part) for part in parts)
+    except (ValueError, AttributeError):
+        return None
+
+def is_deployed_to_stage(version_str, last_stage_version):
+    """Check if a version has been deployed to stage"""
+    if last_stage_version is None:
+        return False
+    
+    try:
+        v_current = parse_version(version_str)
+        v_stage = parse_version(last_stage_version)
+        
+        if v_current is None or v_stage is None:
+            print(f"  ⚠️  Warning: Could not parse version {version_str}")
+            return False
+        
+        # Compare tuples (major, minor, patch)
+        return v_current <= v_stage
+    except Exception as e:
+        # If version parsing fails, treat as blocked
+        print(f"  ⚠️  Warning: Could not parse version {version_str}: {e}")
+        return False
+
+def scan_repositories():
+    """Scan all repositories for undeployed versions and validate stage deployment"""
+    print("🔍 Scanning funding repositories for undeployed versions...\n")
+    
+    deployment_data = {}
+    blocked_data = {}
+    warnings = []
+    stage_missing = []
+    
+    for repo in REPOS:
+        repo_name = repo.split('/')[-1]
+        print(f"📦 Checking {repo_name}...")
+        
+        last_prod = get_last_deployed_version(repo, 'prod')
+        
+        if not last_prod:
+            print(f"  ⚠️  Unable to determine prod deployment status")
+            warnings.append(repo_name)
+            print()
+            continue
+        
+        print(f"  ✓ Last prod deployment: {last_prod}")
+        
+        # Get last stage deployment
+        last_stage = get_last_deployed_version(repo, 'stage')
+        
+        if not last_stage:
+            print(f"  ⚠️  No stage deployment history found")
+            stage_missing.append(repo_name)
+        else:
+            print(f"  ✓ Last stage deployment: {last_stage}")
+        
+        all_tags = get_all_version_tags(repo)
+        
+        if not all_tags:
+            print("  No version tags found")
+            print()
+            continue
+        
+        # Get undeployed versions (newer than last prod)
+        undeployed = []
+        for tag in all_tags:
+            if tag == last_prod:
+                break
+            undeployed.append(tag)
+        
+        if not undeployed:
+            print("  ✓ No undeployed versions")
+            print()
+            continue
+        
+        # Split into ready (deployed to stage) and blocked (not in stage)
+        ready_for_prod = []
+        blocked_versions = []
+        
+        for ver in undeployed:
+            if is_deployed_to_stage(ver, last_stage):
+                ready_for_prod.append(ver)
+            else:
+                blocked_versions.append(ver)
+        
+        if ready_for_prod:
+            print(f"  ✅ Found {len(ready_for_prod)} version(s) ready for prod (stage-validated)")
+            deployment_data[repo] = ready_for_prod
+        
+        if blocked_versions:
+            print(f"  ⚠️  Found {len(blocked_versions)} version(s) blocked (not in stage)")
+            blocked_data[repo] = blocked_versions
+        
+        print()
+    
+    return deployment_data, blocked_data, warnings, stage_missing
+
+def fetch_pr_titles(deployment_data):
+    """Fetch PR titles for all undeployed versions"""
+    print("🔍 Fetching PR titles for undeployed versions...\n")
+    
+    version_details = {}
+    
+    for repo, versions in deployment_data.items():
+        repo_name = repo.split('/')[-1]
+        print(f"  {repo_name}: {len(versions)} versions")
+        version_details[repo_name] = {}
+        
+        for version in versions[:10]:
+            commit_msg = get_commit_message(repo, version)
+            pr_title = extract_pr_title(commit_msg)
+            version_details[repo_name][version] = pr_title
+    
+    print()
+    return version_details
+
+def generate_announcement(version_details, blocked_details, warnings, stage_missing, deployment_date, deployment_time):
+    """Generate Teams markdown announcement"""
+    formatted_date = format_date(deployment_date)
+    formatted_time = format_time(deployment_time)
+    
+    sorted_repos = sorted(version_details.keys())
+    
+    announcement = f"""🚨 Infrastructure Production Deployment Announcement - {formatted_date} 🚨
+
+Hi team,
+
+A production infrastructure deployment is scheduled for {formatted_date}, at {formatted_time}. This release includes updates that have been validated across the Dev, QA, and Stage environments.
+
+What's Included in This Deployment?
+
+"""
+    
+    for repo_name in sorted_repos:
+        versions = version_details[repo_name]
+        announcement += f"**{repo_name}**\n"
+        
+        for version, pr_title in versions.items():
+            if pr_title:
+                announcement += f"{version} → {pr_title}\n"
+            else:
+                announcement += f"{version}\n"
+        
+        announcement += "\n"
+    
+    if warnings:
+        announcement += "⚠️ **Note:** Unable to determine production deployment status for:\n"
+        for warning in warnings:
+            announcement += f"- {warning}\n"
+        announcement += "\n"
+    
+    announcement += """What You Need to Know:
+
+✅ Deployment is scheduled outside of working hours
+
+✅ No significant downtime is expected
+
+❓ If you have any questions or concerns, feel free to reach out.
+
+Thanks!"""
+    
+    return announcement
+
+def main():
+    """Main execution flow"""
+    # Check GitHub authentication
+    if not check_gh_auth():
+        print("❌ GitHub CLI not authenticated. Please run: gh auth login")
+        sys.exit(1)
+    
+    # Check for command line arguments
+    if len(sys.argv) == 3:
+        deployment_date = sys.argv[1]
+        deployment_time = sys.argv[2]
+        
+        # Validate date format
+        try:
+            date_obj = datetime.strptime(deployment_date, '%Y-%m-%d')
+            today = datetime.now().date()
+            if date_obj.date() <= today:
+                print(f"❌ Date must be after {today}")
+                sys.exit(1)
+        except ValueError:
+            print("❌ Invalid date format. Use YYYY-MM-DD")
+            sys.exit(1)
+        
+        # Validate time format
+        try:
+            datetime.strptime(deployment_time, '%H:%M')
+        except ValueError:
+            print("❌ Invalid time format. Use HH:MM (24-hour)")
+            sys.exit(1)
+    else:
+        print("Usage: generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM")
+        print("Example: generate_prod_deployment_announcement.py 2025-12-02 22:00")
+        sys.exit(1)
+    
+    # Scan repositories
+    deployment_data, blocked_data, warnings, stage_missing = scan_repositories()
+    
+    total_ready = len(deployment_data)
+    total_ready_versions = sum(len(versions) for versions in deployment_data.values())
+    total_blocked = len(blocked_data)
+    total_blocked_versions = sum(len(versions) for versions in blocked_data.values())
+    
+    print("=" * 50)
+    print("📊 Summary:")
+    print(f"  Repositories with stage-validated changes: {total_ready}")
+    print(f"  Total versions ready for prod: {total_ready_versions}")
+    if total_blocked > 0:
+        print(f"  ⚠️  Repositories with blocked versions: {total_blocked}")
+        print(f"  ⚠️  Total versions blocked (not in stage): {total_blocked_versions}")
+    if warnings:
+        print(f"  ⚠️  Warnings: {len(warnings)} repos with issues")
+    print()
+    
+    # Exit with error if no versions are ready for production
+    if total_ready_versions == 0:
+        print("=" * 50)
+        print("❌ ERROR: No versions ready for production deployment")
+        print("=" * 50)
+        print()
+        print("All versions must be deployed to stage before production.")
+        print()
+        
+        if total_blocked_versions > 0:
+            print("Blocked versions (not yet in stage):\n")
+            for repo, versions in sorted(blocked_data.items()):
+                repo_name = repo.split('/')[-1]
+                print(f"  **{repo_name}**")
+                if repo_name in stage_missing:
+                    print(f"    ⚠️ No stage deployment history found")
+                for ver in versions:
+                    print(f"    - {ver}")
+                print()
+        
+        print("Action required: Deploy these versions to stage first, then retry.")
+        sys.exit(1)
+    
+    # Fetch PR titles for ready versions
+    version_details = fetch_pr_titles(deployment_data)
+    
+    # Fetch PR titles for blocked versions (for the announcement)
+    blocked_details = {}
+    if blocked_data:
+        blocked_details = fetch_pr_titles(blocked_data)
+    
+    # Generate announcement
+    announcement = generate_announcement(version_details, blocked_details, warnings, stage_missing, deployment_date, deployment_time)
+    
+    print("=" * 50)
+    print("📋 TEAMS ANNOUNCEMENT")
+    print("=" * 50)
+    print()
+    print(announcement)
+    print()
+    print("=" * 50)
+    print()
+    print(f"📅 Summary:")
+    print(f"   - {total_ready} repositories with stage-validated deployments")
+    print(f"   - {total_ready_versions} versions ready to be deployed")
+    if total_blocked_versions > 0:
+        print(f"   - {total_blocked_versions} versions blocked (awaiting stage deployment)")
+    print(f"   - Scheduled for: {format_date(deployment_date)} at {format_time(deployment_time)}")
+
+if __name__ == "__main__":
+    main()
