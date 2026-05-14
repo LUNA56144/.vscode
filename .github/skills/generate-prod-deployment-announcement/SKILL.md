@@ -32,7 +32,7 @@ SCRIPT="$(dirname "$(realpath "$0")")/scripts/generate_prod_deployment_announcem
 # Preview only — show announcement in terminal
 python3 "$SCRIPT" YYYY-MM-DD HH:MM
 
-# Generate + post directly to Teams (Funding SRE channel)
+# Generate + post directly to Teams (General - Funding Product Family channel)
 python3 "$SCRIPT" YYYY-MM-DD HH:MM --post
 ```
 
@@ -45,7 +45,7 @@ python3 .github/skills/generate-prod-deployment-announcement/scripts/generate_pr
 
 The script:
 - Verifies `gh` authentication
-- Scans all 11 funding repos for undeployed version tags
+- Scans all 10 funding repos for undeployed version tags
 - Compares each version against the last stage deployment (semantic version comparison)
 - Categorizes versions as **ready** (stage-validated) or **blocked** (not yet in stage)
 - Exits with error code 1 if zero versions are ready — action required: deploy blocked versions to stage first
@@ -60,7 +60,7 @@ Display the full Teams announcement from the script output (between the `TEAMS A
 
 After displaying the announcement, **always ask the user for explicit confirmation** before posting to Teams:
 
-> "Would you like me to post this announcement to the Funding SRE Teams channel now?"
+> "Would you like me to post this announcement to the General - Funding Product Family Teams channel now?"
 
 - If **confirmed** → proceed to Step 5
 - If **declined** → inform the user the announcement is ready to copy/paste manually and stop

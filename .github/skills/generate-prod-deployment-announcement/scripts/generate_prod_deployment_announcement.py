@@ -89,6 +89,11 @@ def get_last_deployed_version(repo, environment='prod'):
         debug(f"No 'Apply Terraform' workflow found for {repo}")
         return None
 
+    # Validate workflow_id is a numeric string before shell interpolation
+    if not re.fullmatch(r'\d+', workflow_id):
+        debug(f"Unexpected workflow_id format for {repo}: {workflow_id!r}")
+        return None
+
     debug(f"Workflow ID for {repo}: {workflow_id}")
 
     # Fetch last 30 successful runs only — no --paginate to avoid stalling
@@ -138,11 +143,11 @@ def get_all_version_tags(repo):
     """
     import json
     cmd = (
-        f'gh api "repos/{repo}/tags?per_page=100" '
+        f'gh api "repos/{repo}/tags?per_page=100" --paginate '
         f'--jq \'.[] | select(.name | test("^v[0-9]+\\\\.[0-9]+\\\\.[0-9]+$")) '
         f'| {{name: .name, sha: .commit.sha}}\' 2>/dev/null'
     )
-    output = run_gh_command(cmd)
+    output = run_gh_command(cmd, timeout=60)
 
     if not output:
         return [], {}
@@ -182,6 +187,10 @@ def get_commit_message(repo, tag, sha_cache=None):
         sha = run_gh_command(cmd)
 
     if sha:
+        # Validate sha is a hex string before shell interpolation
+        if not re.fullmatch(r'[0-9a-fA-F]{7,64}', sha):
+            debug(f"Unexpected SHA format for {repo} {tag}: {sha!r}")
+            return ""
         cmd = f'gh api repos/{repo}/commits/{sha} --jq ".commit.message" 2>/dev/null'
         message = run_gh_command(cmd)
         return message if message else ""
@@ -533,11 +542,14 @@ def post_to_teams(announcement, webhook_url, version_details=None, deployment_da
         with urllib.request.urlopen(req, timeout=15) as resp:
             if resp.status in (200, 202):
                 print("✅ Announcement posted to Teams successfully!")
+                return True
             else:
                 print(f"⚠️  Unexpected response: HTTP {resp.status}")
+                return False
     except Exception as e:
         print(f"❌ Failed to post to Teams: {e}")
         print("   Check that TEAMS_WEBHOOK_URL is set and the workflow is active.")
+        return False
 
 
 def main():
@@ -658,7 +670,9 @@ def main():
             print("   Or ensure gh is authenticated with access to LUNA56144/.vscode")
             sys.exit(1)
         print()
-        post_to_teams(announcement, webhook_url, version_details, deployment_date, deployment_time)
+        post_ok = post_to_teams(announcement, webhook_url, version_details, deployment_date, deployment_time)
+        if not post_ok:
+            sys.exit(1)
     else:
         print()
         print("💡 Tip: Run with --post to send directly to Teams.")
