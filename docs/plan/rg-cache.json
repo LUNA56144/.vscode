@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "version": "1.0",
+    "last_scanned": "2026-05-14",
+    "source": "manual-bootstrap",
+    "refresh_trigger": "explicit --refresh flag only",
+    "notes": "Excludes log-file-analysis repos. Prod RGs included but may require elevated subscription access."
+  },
+  "resource_groups": [
+    { "name": "BDAIM-D-NA26-FundingCalculation-RGRP",       "env": "dev",   "repo": "funding-calculation",                    "group": "calculation" },
+    { "name": "BDAIM-Q-NA26-FundingCalculation-RGRP",       "env": "qa",    "repo": "funding-calculation",                    "group": "calculation" },
+    { "name": "BDAIM-S-NA26-FundingCalculation-RGRP",       "env": "stage", "repo": "funding-calculation",                    "group": "calculation" },
+    { "name": "BDAIM-P-NA26-FundingCalculation-RGRP",       "env": "prod",  "repo": "funding-calculation",                    "group": "calculation" },
+
+    { "name": "BDAIM-D-NA26-HRAFundingEngine-RGRP",         "env": "dev",   "repo": "hra-foundry",                            "group": "calculation" },
+    { "name": "BDAIM-Q-NA26-HRAFundingEngine-RGRP",         "env": "qa",    "repo": "hra-foundry",                            "group": "calculation" },
+    { "name": "BDAIM-S-NA26-HRAFundingEngine-RGRP",         "env": "stage", "repo": "hra-foundry",                            "group": "calculation" },
+    { "name": "BDAIM-P-NA26-HRAFundingEngine-RGRP",         "env": "prod",  "repo": "hra-foundry",                            "group": "calculation" },
+
+    { "name": "BDAIM-D-NA26-FundingCommunication-RGRP",     "env": "dev",   "repo": "funding-communication-infrastructure",   "group": "exports" },
+    { "name": "BDAIM-Q-NA26-FundingCommunication-RGRP",     "env": "qa",    "repo": "funding-communication-infrastructure",   "group": "exports" },
+    { "name": "BDAIM-S-NA26-FundingCommunication-RGRP",     "env": "stage", "repo": "funding-communication-infrastructure",   "group": "exports" },
+    { "name": "BDAIM-P-NA26-FundingCommunication-RGRP",     "env": "prod",  "repo": "funding-communication-infrastructure",   "group": "exports" },
+
+    { "name": "BDAIM-D-NA26-FundingDataTransfer-RGRP",      "env": "dev",   "repo": "funding-data-transfer-infrastructure",   "group": "exports" },
+    { "name": "BDAIM-Q-NA26-FundingDataTransfer-RGRP",      "env": "qa",    "repo": "funding-data-transfer-infrastructure",   "group": "exports" },
+    { "name": "BDAIM-S-NA26-FundingDataTransfer-RGRP",      "env": "stage", "repo": "funding-data-transfer-infrastructure",   "group": "exports" },
+    { "name": "BDAIM-P-NA26-FundingDataTransfer-RGRP",      "env": "prod",  "repo": "funding-data-transfer-infrastructure",   "group": "exports" },
+
+    { "name": "BDAIM-D-NA26-FundingReimbursement-RGRP",     "env": "dev",   "repo": "funding-reimbursement-infrastructure",   "group": "exports" },
+    { "name": "BDAIM-Q-NA26-FundingReimbursement-RGRP",     "env": "qa",    "repo": "funding-reimbursement-infrastructure",   "group": "exports" },
+    { "name": "BDAIM-S-NA26-FundingReimbursement-RGRP",     "env": "stage", "repo": "funding-reimbursement-infrastructure",   "group": "exports" },
+    { "name": "BDAIM-P-NA26-FundingReimbursement-RGRP",     "env": "prod",  "repo": "funding-reimbursement-infrastructure",   "group": "exports" },
+
+    { "name": "BDAIM-D-NA26-FundingEligibility-RGRP",       "env": "dev",   "repo": "funding-eligibility-infrastructure",     "group": "facilitation" },
+    { "name": "BDAIM-Q-NA26-FundingEligibility-RGRP",       "env": "qa",    "repo": "funding-eligibility-infrastructure",     "group": "facilitation" },
+    { "name": "BDAIM-S-NA26-FundingEligibility-RGRP",       "env": "stage", "repo": "funding-eligibility-infrastructure",     "group": "facilitation" },
+    { "name": "BDAIM-P-NA26-FundingEligibility-RGRP",       "env": "prod",  "repo": "funding-eligibility-infrastructure",     "group": "facilitation" },
+
+    { "name": "BDAIM-D-NA26-FundingQualification-RGRP",     "env": "dev",   "repo": "funding-qualification-infrastructure",   "group": "facilitation" },
+    { "name": "BDAIM-Q-NA26-FundingQualification-RGRP",     "env": "qa",    "repo": "funding-qualification-infrastructure",   "group": "facilitation" },
+    { "name": "BDAIM-S-NA26-FundingQualification-RGRP",     "env": "stage", "repo": "funding-qualification-infrastructure",   "group": "facilitation" },
+    { "name": "BDAIM-P-NA26-FundingQualification-RGRP",     "env": "prod",  "repo": "funding-qualification-infrastructure",   "group": "facilitation" },
+
+    { "name": "BDAIM-D-NA26-FundingEnrollmentSupport-RGRP", "env": "dev",   "repo": "funding-enrollment-support-infrastructure", "group": "facilitation" },
+    { "name": "BDAIM-Q-NA26-FundingEnrollmentSupport-RGRP", "env": "qa",    "repo": "funding-enrollment-support-infrastructure", "group": "facilitation" },
+    { "name": "BDAIM-S-NA26-FundingEnrollmentSupport-RGRP", "env": "stage", "repo": "funding-enrollment-support-infrastructure", "group": "facilitation" },
+    { "name": "BDAIM-P-NA26-FundingEnrollmentSupport-RGRP", "env": "prod",  "repo": "funding-enrollment-support-infrastructure", "group": "facilitation" },
+
+    { "name": "BDAIM-D-NA26-ClientImplementations-RGRP",    "env": "dev",   "repo": "client-implementations-infra",           "group": "configuration" },
+    { "name": "BDAIM-Q-NA26-ClientImplementations-RGRP",    "env": "qa",    "repo": "client-implementations-infra",           "group": "configuration" },
+    { "name": "BDAIM-S-NA26-ClientImplementations-RGRP",    "env": "stage", "repo": "client-implementations-infra",           "group": "configuration" },
+    { "name": "BDAIM-P-NA26-ClientImplementations-RGRP",    "env": "prod",  "repo": "client-implementations-infra",           "group": "configuration" },
+
+    { "name": "BDAIM-D-NA26-ClientData-RGRP",               "env": "dev",   "repo": "client-data-azure-infrastructure",       "group": "configuration" },
+    { "name": "BDAIM-Q-NA26-ClientData-RGRP",               "env": "qa",    "repo": "client-data-azure-infrastructure",       "group": "configuration" },
+    { "name": "BDAIM-S-NA26-ClientData-RGRP",               "env": "stage", "repo": "client-data-azure-infrastructure",       "group": "configuration" },
+    { "name": "BDAIM-P-NA26-ClientData-RGRP",               "env": "prod",  "repo": "client-data-azure-infrastructure",       "group": "configuration" },
+
+    { "name": "BDAIM-D-NA26-ClientGuides-RGRP",             "env": "dev",   "repo": "client-guides-infrastructure",           "group": "configuration" },
+    { "name": "BDAIM-Q-NA26-ClientGuides-RGRP",             "env": "qa",    "repo": "client-guides-infrastructure",           "group": "configuration" },
+    { "name": "BDAIM-S-NA26-ClientGuides-RGRP",             "env": "stage", "repo": "client-guides-infrastructure",           "group": "configuration" },
+    { "name": "BDAIM-P-NA26-ClientGuides-RGRP",             "env": "prod",  "repo": "client-guides-infrastructure",           "group": "configuration" }
+  ]
+}

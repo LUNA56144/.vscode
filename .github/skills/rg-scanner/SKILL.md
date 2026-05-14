@@ -28,6 +28,33 @@ Or a group base path to scan all repos in a group:
 
 ## Procedure
 
+### Step 0 — Cache Check (Fast Path)
+
+Before scanning any repositories, check if the RG cache exists:
+
+```bash
+CACHE_PATH="/home/saldave/projects/.vscode/docs/plan/rg-cache.json"
+test -f "$CACHE_PATH" && echo "CACHE_HIT" || echo "CACHE_MISS"
+```
+
+**If cache exists AND no `--refresh` flag was passed:**
+1. Read `rg-cache.json` directly — no file system scan, no Terraform file reads
+2. Return the `resource_groups` array as the full RG list
+3. **Skip Steps 1–5 entirely**
+4. Emit:
+
+```
+CACHE_HIT:true
+RG_NAMES_LOADED:<jq '.resource_groups | length' rg-cache.json>
+SOURCE:rg-cache.json
+PHASE_1_SKIPPED:true
+```
+
+**If cache is missing OR `--refresh` was explicitly requested:**
+Proceed with Steps 1–5 below, then write results back to the cache file at the end of Step 5.
+
+---
+
 ### Step 1 — Discover Environments
 
 ```bash
@@ -54,7 +81,7 @@ For each environment directory, run the patterns from [scan-patterns.md](./refer
 **ReAct Pattern per file:**
 - **Reason**: "This file has N resource blocks — which ones likely reference RGs?"
 - **Act**: Run the grep pattern
-- **Reflect**: Do results follow `rg-im-<domain>-<service>-<env>` convention?
+- **Reflect**: Do results follow the naming convention?
 
 ### Step 3 — Resolve Variables
 
@@ -89,23 +116,35 @@ scan_gaps:
   - <description_if_no_rg_found>
 ```
 
-### Step 5 — Validate
+### Step 5 — Validate and Write Cache
 
 Before returning, verify:
 - At least one RG name found per environment that contains `.tf` files with `resource` blocks
 - All `VAR_UNRESOLVED` entries were traced as far as possible
-- Anomalies are documented (names not matching `rg-im-*` pattern)
+- Anomalies are documented
+
+**After validation, write (or overwrite) the cache file:**
+
+```bash
+CACHE_PATH="/home/saldave/projects/.vscode/docs/plan/rg-cache.json"
+# Serialize the full structured output as JSON to $CACHE_PATH
+# Include meta.last_scanned = <today ISO date>, meta.source = "repo-scan"
+```
+
+Emit:
+```
+CACHE_WRITTEN:true
+CACHE_PATH:/home/saldave/projects/.vscode/docs/plan/rg-cache.json
+RG_NAMES_FOUND:<n>
+```
 
 ## Naming Convention
 
-Expected pattern: `rg-im-<domain>-<service>-<environment>`
+Expected pattern: `BDAIM-<ENV_CODE>-NA26-<ServiceName>-RGRP`
 
-Examples:
-- `rg-im-funding-calculation-dev`
-- `rg-im-funding-eligibility-prod`
-- `rg-im-funding-foundry-qa`
+Env codes: `D` = dev, `Q` = qa, `S` = stage, `P` = prod
 
-Flag as anomaly if: all-uppercase, missing env suffix, contains subscription ID, or uses a hardcoded non-standard name.
+Flag as anomaly if: missing env code, missing `RGRP` suffix, or deviates from this pattern.
 
 ## Scan Patterns Reference
 
