@@ -85,13 +85,13 @@ def get_last_deployed_version(repo, environment='prod'):
     # Get the Apply Terraform workflow ID
     cmd = f'gh api repos/{repo}/actions/workflows --jq \'.workflows[] | select(.name == "Apply Terraform") | .id\' 2>/dev/null | head -1'
     workflow_id = run_gh_command(cmd)
-    
+
     if not workflow_id:
         debug(f"No 'Apply Terraform' workflow found for {repo}")
         return None
-    
+
     debug(f"Workflow ID for {repo}: {workflow_id}")
-    
+
     # Fetch last 30 successful runs only — no --paginate to avoid stalling
     cmd = (
         f'gh api "repos/{repo}/actions/workflows/{workflow_id}/runs'
@@ -99,11 +99,11 @@ def get_last_deployed_version(repo, environment='prod'):
         f'--jq \'.workflow_runs[] | {{name: .name, created: .created_at}}\' 2>/dev/null'
     )
     output = run_gh_command(cmd, timeout=30)
-    
+
     if not output:
         debug(f"No workflow run output for {repo} env={environment}")
         return None
-    
+
     # Parse JSON output and look for environment deployments
     import json
     for line in output.split('\n'):
@@ -112,7 +112,7 @@ def get_last_deployed_version(repo, environment='prod'):
         try:
             run_data = json.loads(line)
             run_name = run_data.get('name', '')
-            
+
             # Match various environment patterns:
             # - "Apply prod terraform from v1.2.3"
             # - "Apply Terraform (prod) [v1.2.3]"
@@ -121,14 +121,14 @@ def get_last_deployed_version(repo, environment='prod'):
             # Exclude prod-secondary and stage-secondary
             env_pattern = rf'\b{environment}\b'
             secondary_pattern = rf'\b{environment}-secondary\b'
-            
+
             if re.search(env_pattern, run_name, re.IGNORECASE) and not re.search(secondary_pattern, run_name, re.IGNORECASE):
                 match = re.search(r'v\d+\.\d+\.\d+', run_name)
                 if match:
                     return match.group(0)
         except json.JSONDecodeError:
             continue
-    
+
     return None
 
 def get_all_version_tags(repo):
@@ -192,15 +192,15 @@ def extract_pr_title(commit_message):
     """Extract PR title from commit message"""
     if not commit_message:
         return None
-    
+
     lines = commit_message.split('\n')
-    
+
     # Handle "Merge pull request #123" format
     if len(lines) > 1 and 'Merge pull request' in lines[0]:
         for i, line in enumerate(lines):
             if i > 0 and line.strip():
                 return line.strip()
-    
+
     # Handle direct PR title format: "Title (#123)"
     # Extract first line and remove PR number
     first_line = lines[0].strip()
@@ -208,7 +208,7 @@ def extract_pr_title(commit_message):
         # Remove PR number pattern like "(#123)" from the end
         title = re.sub(r'\s*\(#\d+\)\s*$', '', first_line)
         return title if title else None
-    
+
     return None
 
 def format_date(date_str):
@@ -223,7 +223,7 @@ def format_time(time_str):
     time_obj = datetime.strptime(time_str, '%H:%M')
     hour = time_obj.hour
     minute = time_obj.minute
-    
+
     if hour == 0:
         return f"12:{minute:02d} A.M. MT"
     elif hour < 12:
@@ -247,15 +247,15 @@ def is_deployed_to_stage(version_str, last_stage_version):
     """Check if a version has been deployed to stage"""
     if last_stage_version is None:
         return False
-    
+
     try:
         v_current = parse_version(version_str)
         v_stage = parse_version(last_stage_version)
-        
+
         if v_current is None or v_stage is None:
             print(f"  ⚠️  Warning: Could not parse version {version_str}")
             return False
-        
+
         # Compare tuples (major, minor, patch)
         return v_current <= v_stage
     except Exception as e:
@@ -266,74 +266,74 @@ def is_deployed_to_stage(version_str, last_stage_version):
 def scan_repositories():
     """Scan all repositories for undeployed versions and validate stage deployment"""
     print("🔍 Scanning funding repositories for undeployed versions...\n")
-    
+
     deployment_data = {}
     blocked_data = {}
     warnings = []
     stage_missing = []
-    
+
     for repo in REPOS:
         repo_name = repo.split('/')[-1]
         print(f"📦 Checking {repo_name}...")
-        
+
         last_prod = get_last_deployed_version(repo, 'prod')
-        
+
         if not last_prod:
             print(f"  ⚠️  Unable to determine prod deployment status")
             warnings.append(repo_name)
             print()
             continue
-        
+
         print(f"  ✓ Last prod deployment: {last_prod}")
-        
+
         # Get last stage deployment
         last_stage = get_last_deployed_version(repo, 'stage')
-        
+
         if not last_stage:
             print(f"  ⚠️  No stage deployment history found")
             stage_missing.append(repo_name)
         else:
             print(f"  ✓ Last stage deployment: {last_stage}")
-        
+
         all_tags, sha_cache = get_all_version_tags(repo)
-        
+
         if not all_tags:
             print("  No version tags found")
             print()
             continue
-        
+
         # Get undeployed versions (newer than last prod)
         undeployed = []
         for tag in all_tags:
             if tag == last_prod:
                 break
             undeployed.append(tag)
-        
+
         if not undeployed:
             print("  ✓ No undeployed versions")
             print()
             continue
-        
+
         # Split into ready (deployed to stage) and blocked (not in stage)
         ready_for_prod = []
         blocked_versions = []
-        
+
         for ver in undeployed:
             if is_deployed_to_stage(ver, last_stage):
                 ready_for_prod.append(ver)
             else:
                 blocked_versions.append(ver)
-        
+
         if ready_for_prod:
             print(f"  ✅ Found {len(ready_for_prod)} version(s) ready for prod (stage-validated)")
             deployment_data[repo] = {"versions": ready_for_prod, "sha_cache": sha_cache}
-        
+
         if blocked_versions:
             print(f"  ⚠️  Found {len(blocked_versions)} version(s) blocked (not in stage)")
             blocked_data[repo] = blocked_versions
-        
+
         print()
-    
+
     return deployment_data, blocked_data, warnings, stage_missing
 
 def fetch_pr_titles(deployment_data):
@@ -378,9 +378,9 @@ def generate_announcement(version_details, blocked_details, warnings, stage_miss
     """Generate Teams markdown announcement"""
     formatted_date = format_date(deployment_date)
     formatted_time = format_time(deployment_time)
-    
+
     sorted_repos = sorted(version_details.keys())
-    
+
     announcement = f"""🚨 Infrastructure Production Deployment Announcement - {formatted_date} 🚨
 
 Hi team,
@@ -390,25 +390,25 @@ A production infrastructure deployment is scheduled for {formatted_date}, at {fo
 What's Included in This Deployment?
 
 """
-    
+
     for repo_name in sorted_repos:
         versions = version_details[repo_name]
         announcement += f"**{repo_name}**\n"
-        
+
         for version, pr_title in versions.items():
             if pr_title:
                 announcement += f"{version} → {pr_title}\n"
             else:
                 announcement += f"{version}\n"
-        
+
         announcement += "\n"
-    
+
     if warnings:
         announcement += "⚠️ **Note:** Unable to determine production deployment status for:\n"
         for warning in warnings:
             announcement += f"- {warning}\n"
         announcement += "\n"
-    
+
     announcement += """What You Need to Know:
 
 ✅ Deployment is scheduled outside of working hours
@@ -418,16 +418,113 @@ What's Included in This Deployment?
 ❓ If you have any questions or concerns, feel free to reach out.
 
 Thanks!"""
-    
+
     return announcement
 
-def post_to_teams(announcement, webhook_url):
-    """Post announcement to Teams channel via Power Automate webhook"""
+def post_to_teams(announcement, webhook_url, version_details=None, deployment_date=None, deployment_time=None):
+    """Post announcement to Teams channel via Power Automate webhook as a rich Adaptive Card"""
     try:
         import urllib.request
         import json
 
-        payload = json.dumps({"text": announcement}).encode("utf-8")
+        body_elements = []
+
+        # Header
+        formatted_date = format_date(deployment_date) if deployment_date else ""
+        formatted_time = format_time(deployment_time) if deployment_time else ""
+
+        body_elements.append({
+            "type": "TextBlock",
+            "text": f"🚨 Infrastructure Production Deployment Announcement",
+            "size": "Large",
+            "weight": "Bolder",
+            "wrap": True,
+            "color": "Attention"
+        })
+        body_elements.append({
+            "type": "TextBlock",
+            "text": f"{formatted_date} at {formatted_time}",
+            "size": "Medium",
+            "isSubtle": True,
+            "spacing": "None",
+            "wrap": True
+        })
+        body_elements.append({
+            "type": "TextBlock",
+            "text": "Hi team,\n\nA production infrastructure deployment is scheduled for "
+                    f"**{formatted_date}** at **{formatted_time}**. This release includes updates "
+                    "that have been validated across the Dev, QA, and Stage environments.",
+            "wrap": True,
+            "spacing": "Medium"
+        })
+        body_elements.append({
+            "type": "TextBlock",
+            "text": "📦 What's Included in This Deployment?",
+            "weight": "Bolder",
+            "size": "Medium",
+            "spacing": "Medium",
+            "wrap": True
+        })
+
+        # Repo sections
+        if version_details:
+            for repo_name in sorted(version_details.keys()):
+                versions = version_details[repo_name]
+                version_lines = []
+                for version, pr_title in versions.items():
+                    if pr_title:
+                        version_lines.append(f"- **{version}** → {pr_title}")
+                    else:
+                        version_lines.append(f"- **{version}**")
+
+                body_elements.append({
+                    "type": "Container",
+                    "spacing": "Medium",
+                    "style": "emphasis",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": f"🗂 {repo_name}",
+                            "weight": "Bolder",
+                            "wrap": True
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "\n".join(version_lines),
+                            "wrap": True,
+                            "spacing": "Small"
+                        }
+                    ]
+                })
+
+        # Footer
+        body_elements.append({
+            "type": "TextBlock",
+            "text": "📋 What You Need to Know:",
+            "weight": "Bolder",
+            "size": "Medium",
+            "spacing": "Medium",
+            "wrap": True
+        })
+        body_elements.append({
+            "type": "TextBlock",
+            "text": "✅ Deployment is scheduled outside of working hours\n\n"
+                    "✅ No significant downtime is expected\n\n"
+                    "❓ If you have any questions or concerns, feel free to reach out.\n\n"
+                    "Thanks!",
+            "wrap": True,
+            "spacing": "Small"
+        })
+
+        adaptive_card = {
+            "type": "AdaptiveCard",
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.4",
+            "msteams": {"width": "Full"},
+            "body": body_elements
+        }
+
+        payload = json.dumps(adaptive_card).encode("utf-8")
         req = urllib.request.Request(
             webhook_url,
             data=payload,
@@ -461,7 +558,7 @@ def main():
     if len(args) == 2:
         deployment_date = args[0]
         deployment_time = args[1]
-        
+
         # Validate date format
         try:
             date_obj = datetime.strptime(deployment_date, '%Y-%m-%d')
@@ -472,7 +569,7 @@ def main():
         except ValueError:
             print("❌ Invalid date format. Use YYYY-MM-DD")
             sys.exit(1)
-        
+
         # Validate time format
         try:
             datetime.strptime(deployment_time, '%H:%M')
@@ -483,15 +580,15 @@ def main():
         print("Usage: generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM [--post] [--verbose]")
         print("Example: generate_prod_deployment_announcement.py 2025-12-02 22:00 --post")
         sys.exit(1)
-    
+
     # Scan repositories
     deployment_data, blocked_data, warnings, stage_missing = scan_repositories()
-    
+
     total_ready = len(deployment_data)
     total_ready_versions = sum(len(data["versions"]) for data in deployment_data.values())
     total_blocked = len(blocked_data)
     total_blocked_versions = sum(len(versions) for versions in blocked_data.values())
-    
+
     print("=" * 50)
     print("📊 Summary:")
     print(f"  Repositories with stage-validated changes: {total_ready}")
@@ -502,7 +599,7 @@ def main():
     if warnings:
         print(f"  ⚠️  Warnings: {len(warnings)} repos with issues")
     print()
-    
+
     # Exit with error if no versions are ready for production
     if total_ready_versions == 0:
         print("=" * 50)
@@ -511,7 +608,7 @@ def main():
         print()
         print("All versions must be deployed to stage before production.")
         print()
-        
+
         if total_blocked_versions > 0:
             print("Blocked versions (not yet in stage):\n")
             for repo, versions in sorted(blocked_data.items()):
@@ -522,16 +619,16 @@ def main():
                 for ver in versions:
                     print(f"    - {ver}")
                 print()
-        
+
         print("Action required: Deploy these versions to stage first, then retry.")
         sys.exit(1)
-    
+
     # Fetch PR titles for ready versions only (blocked versions are not in the announcement)
     version_details = fetch_pr_titles(deployment_data)
 
     # Generate announcement
     announcement = generate_announcement(version_details, {}, warnings, stage_missing, deployment_date, deployment_time)
-    
+
     print("=" * 50)
     print("📋 TEAMS ANNOUNCEMENT")
     print("=" * 50)
@@ -553,7 +650,7 @@ def main():
             print("\n❌ TEAMS_WEBHOOK_URL is not set. Add it to ~/.zshrc and run: source ~/.zshrc")
             sys.exit(1)
         print()
-        post_to_teams(announcement, webhook_url)
+        post_to_teams(announcement, webhook_url, version_details, deployment_date, deployment_time)
     else:
         print()
         print("💡 Tip: Run with --post to send directly to Teams.")
