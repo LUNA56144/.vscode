@@ -1,5 +1,0 @@
-# Backups
-.github.backup-*/
-
-# Sensitive / local-only
-mcp.json
