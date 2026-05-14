@@ -30,6 +30,7 @@ Skill location: `.github/skills/infra-task-workflow/SKILL.md`
 | `tf-plan-risk-summary` | "risk summary", PR with autoplan comment |
 | `pr-deprecated-comments` | "clean up PR comments", "stale comments" |
 | `rg-scanner` | "scan resource groups", "find rg names", "audit terraform rg" |
+| `rg-policy-scan` | "policy compliance", "non-compliant resources", "azure policy violations" |
 | `rg-jira-bulk` | "bulk jira tickets", "create tickets from rg scan", "batch ticket creation" |
 
 ## Custom Agents available
