@@ -24,7 +24,7 @@ One ticket per RG with non-compliance findings. Assigned to sandro.aldave@wtwco.
 
 ## Target Repositories
 
-Scan all funding repos under these base paths:
+Funding repos live under:
 
 | Group | Base Path |
 |-------|-----------|
@@ -33,33 +33,55 @@ Scan all funding repos under these base paths:
 | facilitation | `/home/saldave/projects/funding/facilitation/` |
 | configuration | `/home/saldave/projects/funding/configuration/` |
 
-Priority repos (always include): `funding-calculation`, `hra-foundry`
+Excluded repos: anything under `log-file-analysis-infrastructure`.
+
+## RG Cache
+
+```
+CACHE_PATH=/home/saldave/projects/.vscode/docs/plan/rg-cache.json
+```
+
+This file is the authoritative RG name source. Repo scanning is only triggered when:
+- The cache file does not exist, OR
+- The user explicitly passes `--refresh`
 
 ## Workflow — 3 Phases
 
-### Phase 1 — Parallel RG Discovery (Map)
+### Phase 1 — RG Discovery (Cache-First)
 
-**AI Methodology: Parallel fan-out with ReAct reasoning per repo**
+**Step 1a — Check cache:**
 
-Invoke the `rg-scanner` skill for EACH repo group **simultaneously** (parallel lanes).
+```bash
+test -f /home/saldave/projects/.vscode/docs/plan/rg-cache.json \
+  && echo "CACHE_HIT" || echo "CACHE_MISS"
+```
 
-For each repo found:
-1. **Reason**: "What environments does this repo have? What RG naming patterns are expected?"
-2. **Act**: Run the rg-scanner skill — extract all `resource_group_name` values per environment
-3. **Reflect**: Confirm at least one concrete RG name was resolved (not `VAR_UNRESOLVED`)
+**If CACHE_HIT:** Read `rg-cache.json` directly. Phase 1 is complete. Emit:
 
-Emit Phase 1 output:
 ```
 PHASE:1
+CACHE_HIT:true
+RG_NAMES_LOADED:<n>
+PHASE_1_SKIPPED:true
+LANES:none
+```
+
+**If CACHE_MISS or `--refresh`:** Invoke the `rg-scanner` skill for each repo group
+in parallel lanes. After scanning completes, the skill writes the new cache file.
+
+```
+PHASE:1
+CACHE_HIT:false
 REPOS_SCANNED:<n>
 RG_NAMES_FOUND:<n>
 LANES:parallel
 FANOUT_COMPLETE:true
+CACHE_WRITTEN:true
 ```
 
-**Confidence gate** before Phase 2:
+**Confidence gate (only applies to full scan path):**
 - All 4 repo groups scanned (0.30)
-- Priority repos `funding-calculation` and `hra-foundry` have at least one RG (0.30)
+- `funding-calculation` and `hra-foundry` have at least one RG (0.30)
 - No unexplained zero-RG repos (0.20)
 - Variable references resolved to concrete names (0.20)
 
@@ -67,18 +89,18 @@ If score < 0.80 → re-scan gaps before continuing.
 
 ---
 
-### Phase 2 — Azure Policy Compliance Scan (Reduce + Enrich)
+### Phase 2 — Azure Policy Compliance Scan
 
-**AI Methodology: Sequential enrichment with confidence-weighted severity scoring**
+**Input:** `rg-cache.json` (written by Phase 1 or pre-existing)
+**Output:** `policy-findings.json` (written by this phase)
 
-Invoke the `rg-policy-scan` skill with the full RG list from Phase 1.
+Invoke the `rg-policy-scan` skill. The skill will:
+1. Run a **single** Azure Resource Graph batch query across all RGs
+2. Classify findings by severity
+3. Write full results to `/home/saldave/projects/.vscode/docs/plan/policy-findings.json`
+4. Return only the summary table to context
 
-The skill will:
-1. Query `az policy state list` for each RG (non-compliant filter)
-2. Return structured YAML: per-RG list of non-compliant policies, affected resources, and effect type
-3. Score each finding by severity: `deny` > `audit` > `modify`
-
-**ReAct pattern per RG:**
+**ReAct pattern per RG (applied to the batch results, not per query):**
 - **Reason**: "How many policies failed? Are any `deny`-effect — meaning resources may be blocked?"
 - **Act**: Record the findings, grouping by policy definition and effect
 - **Reflect**: Flag RGs with zero non-compliance as `COMPLIANT` — skip ticket creation for those
@@ -93,9 +115,11 @@ Output a summary table before Phase 3:
 Emit Phase 2 output:
 ```
 PHASE:2
+STATE_FILE:/home/saldave/projects/.vscode/docs/plan/policy-findings.json
 RGS_CHECKED:<n>
 RGS_NON_COMPLIANT:<n>
 RGS_COMPLIANT:<n>
+QUERY_MODE:resource-graph-batch|per-rg-sequential
 LANES:sequential
 CONFIDENCE:<0.0–1.0>
 ```
@@ -106,9 +130,13 @@ CONFIDENCE:<0.0–1.0>
 
 ### Phase 3 — Batch Remediation Ticket Creation
 
-**AI Methodology: Progressive disclosure + single-confirmation bulk create**
+**Input:** Read from `policy-findings.json` — do NOT use conversation context for compliance data.
 
-Invoke the `rg-jira-bulk` skill with the Phase 2 compliance findings.
+```bash
+cat /home/saldave/projects/.vscode/docs/plan/policy-findings.json
+```
+
+Invoke the `rg-jira-bulk` skill with the findings loaded from the state file.
 
 One ticket per non-compliant RG. Each ticket contains:
 - Summary of non-compliant policies (name, effect, count of affected resources)
@@ -127,6 +155,7 @@ The skill will:
 - DO NOT create tickets for compliant RGs
 - DO NOT query policy state before Phase 1 completes — RG names are required inputs
 - DO NOT skip the user review gate in Phase 3
+- DO NOT re-read repos in Phase 2 or 3 — all data flows through state files
 - ALWAYS group policy findings by severity before drafting tickets
 - ALWAYS include the owning repo and environment in every ticket
 

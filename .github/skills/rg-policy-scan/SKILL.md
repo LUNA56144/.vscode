@@ -11,22 +11,16 @@ and what effect type each policy enforces.
 
 ## When to Use
 
-- After `rg-scanner` has produced a list of RG names
+- After `rg-scanner` (or cache load) has produced a list of RG names
 - Checking compliance status before creating remediation tickets
 - Called automatically by `rg-audit-jira` agent in Phase 2
 
 ## Input
 
-A list of RG entries with their owning repo and environment context:
+Read the RG list from the cache file — do NOT re-read from repos:
 
-```yaml
-rgs:
-  - name: rg-im-funding-calculation-dev
-    repo: funding-calculation
-    environment: dev
-  - name: rg-im-funding-foundry-prod
-    repo: hra-foundry
-    environment: prod
+```bash
+CACHE_PATH="/home/saldave/projects/.vscode/docs/plan/rg-cache.json"
 ```
 
 ## Procedure
@@ -39,36 +33,45 @@ az account show --query "{subscription:name,id:id}" -o json
 
 If this fails, stop and report: "Azure CLI not authenticated — run `az login` first."
 
-### Step 2 — Query Non-Compliant State Per RG
+### Step 2 — Batch Query via Azure Resource Graph
 
-For each RG, run the compliance state query. See [policy-commands.md](./references/policy-commands.md) for all commands.
-
-Primary command:
+Build an inline RG name list from the cache and run a **single** Resource Graph query
+instead of N individual `az policy state list` calls.
 
 ```bash
-az policy state list \
-  --resource-group "<rg_name>" \
-  --filter "complianceState eq 'NonCompliant'" \
-  --query "[].{
-    policy:policyDefinitionName,
-    policyDisplayName:policyDefinitionAction,
-    effect:policyEffect,
-    resourceId:resourceId,
-    resourceType:resourceType,
-    policySet:policySetDefinitionName,
-    timestamp:timestamp
-  }" \
-  -o json
+# Ensure resource-graph extension is present
+az extension add --name resource-graph --only-show-errors 2>/dev/null || true
+
+# Build the KQL in~ list from cache
+RG_LIST=$(jq -r '[.resource_groups[].name] | map("\"" + . + "\"") | join(",")' \
+  /home/saldave/projects/.vscode/docs/plan/rg-cache.json)
+
+az graph query -q "
+policyresources
+| where type == 'microsoft.policyinsights/policystates/latest'
+| where properties.complianceState == 'NonCompliant'
+| where resourceGroup in~ ($RG_LIST)
+| project
+    rg           = resourceGroup,
+    policy       = properties.policyDefinitionName,
+    effect       = properties.policyDefinitionAction,
+    resourceId   = properties.resourceId,
+    resourceType = properties.resourceType,
+    policySet    = properties.policySetDefinitionName
+| order by rg asc
+" --first 1000 -o json
 ```
 
-**ReAct per RG:**
-- **Reason**: "How many non-compliant findings? Are any `deny` effect — meaning active resource deployment is being blocked?"
-- **Act**: Collect and structure the raw output
-- **Reflect**: Are the affected resources tied to resources managed by the owning repo?
+This is **one API call** for all RGs. Token output is compact TSV-style JSON, not per-RG
+verbose blobs.
+
+**Fallback — if Resource Graph is unavailable or subscription lacks access:**
+Fall back to per-RG calls using the original command in [policy-commands.md](./references/policy-commands.md).
+Emit `FALLBACK:per-rg-sequential` so the caller knows which path was taken.
 
 ### Step 3 — Classify by Severity
 
-Map `policyEffect` to severity:
+Map `effect` to severity:
 
 | Effect | Severity | Meaning |
 |--------|----------|---------|
@@ -81,13 +84,14 @@ Map `policyEffect` to severity:
 ### Step 4 — Deduplicate and Group
 
 For each RG:
-1. Group findings by `policyDefinitionName`
+1. Group findings by `policy` (policyDefinitionName)
 2. Deduplicate `resourceId` entries under each policy
 3. Identify the maximum severity in the RG (for ticket priority)
+4. Look up `repo` and `env` for each RG from the cache entries
 
 ### Step 5 — Get Policy Display Details (Optional Enrichment)
 
-For each unique policy definition found, retrieve a human-readable description:
+For each **unique** policy definition found across all RGs (not per-RG), retrieve display name once:
 
 ```bash
 az policy definition show \
@@ -96,11 +100,9 @@ az policy definition show \
   -o json 2>/dev/null || echo "builtin_or_custom"
 ```
 
-Use this to populate the "Policy Description" column in output.
-
 ### Step 6 — Structured Output
 
-Return findings as YAML:
+Build the compliance results structure:
 
 ```yaml
 compliance_results:
@@ -121,27 +123,59 @@ compliance_results:
     compliant: <true|false>
 ```
 
+### Step 6b — Write State File
+
+Serialize the full compliance results to a state file. Phase 3 reads from this file
+— it does NOT receive the data through conversation context.
+
+```bash
+STATE_PATH="/home/saldave/projects/.vscode/docs/plan/policy-findings.json"
+```
+
+Write the following structure:
+
+```json
+{
+  "meta": {
+    "generated": "<ISO timestamp>",
+    "rgs_checked": "<n>",
+    "rgs_non_compliant": "<n>",
+    "rgs_compliant": "<n>",
+    "query_mode": "resource-graph-batch | per-rg-sequential"
+  },
+  "compliance_results": [ ]
+}
+```
+
+Emit after writing:
+```
+STATE_FILE_WRITTEN:true
+PATH:/home/saldave/projects/.vscode/docs/plan/policy-findings.json
+RGS_NON_COMPLIANT:<n>
+RGS_COMPLIANT:<n>
+```
+
 ### Step 7 — Summary Table
 
-Before returning, output a human-readable summary:
+Output the human-readable summary table (this stays in context for the user to review):
 
 ```
 === POLICY COMPLIANCE SUMMARY ===
 Subscription: <name>
 
-| RG Name                        | Env  | Status          | Max Severity | Policies Failed | Repo                    |
-|--------------------------------|------|-----------------|-------------|-----------------|-------------------------|
-| rg-im-funding-calculation-dev  | dev  | NON-COMPLIANT   | 🔴 CRITICAL  | 3               | funding-calculation     |
-| rg-im-funding-foundry-prod     | prod | COMPLIANT       | —           | 0               | hra-foundry             |
+| RG Name                                  | Env   | Status        | Max Sev | Policies Failed | Repo                          |
+|------------------------------------------|-------|---------------|---------|-----------------|-------------------------------|
+| BDAIM-D-NA26-FundingCalculation-RGRP     | dev   | NON-COMPLIANT | LOW     | 11              | funding-calculation           |
+| BDAIM-P-NA26-FundingCalculation-RGRP     | prod  | NON-COMPLIANT | LOW     | 11              | funding-calculation           |
 ```
 
 ## Error Handling
 
 | Error | Action |
 |-------|--------|
-| RG not found in Azure | Record as `status: not_found` — may be a plan-only repo |
-| az CLI timeout | Retry once with `--top 100`; if fails again, record as `status: scan_error` |
-| Subscription access denied | Stop and report subscription context |
+| RG not found in Azure | Record as `status: not_found` — may be plan-only or inactive |
+| Resource Graph timeout | Retry once with `--first 500`; if fails, fall back to per-RG |
+| Subscription access denied | Record as `status: access_restricted`; do NOT stop the scan |
 | Empty result (no policies) | Record as `status: no_policies_assigned` |
 
 ## Constraints
@@ -149,9 +183,8 @@ Subscription: <name>
 - DO NOT run `az policy remediation create` — this skill is read-only
 - DO NOT skip RGs that return errors — record them as scan gaps
 - ALWAYS check `az account show` before running queries
-- If output exceeds 200 resources, truncate to top 20 by severity and note the count
+- ALWAYS write `policy-findings.json` before returning — Phase 3 depends on it
 
 ## Policy Reference
 
-See [policy-commands.md](./references/policy-commands.md) for all az CLI and
-Azure MCP commands used in this skill.
+See [policy-commands.md](./references/policy-commands.md) for all az CLI commands.
