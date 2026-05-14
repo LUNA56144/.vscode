@@ -25,7 +25,7 @@ CACHE_PATH="/home/saldave/projects/.vscode/docs/plan/rg-cache.json"
 
 ## Procedure
 
-### Step 1 — Verify Azure CLI Login
+### Step 1 — Verify Azure CLI Login and Identify Subscriptions
 
 ```bash
 az account show --query "{subscription:name,id:id}" -o json
@@ -33,41 +33,47 @@ az account show --query "{subscription:name,id:id}" -o json
 
 If this fails, stop and report: "Azure CLI not authenticated — run `az login` first."
 
-### Step 2 — Batch Query via Azure Resource Graph
+The cache groups RGs by `env`. Route them to the correct subscription:
 
-Build an inline RG name list from the cache and run a **single** Resource Graph query
-instead of N individual `az policy state list` calls.
+| Environments | Subscription |
+|---|---|
+| `dev`, `qa`, `stage` | current active subscription (DEV) |
+| `prod` | switch to `WTW-BDAIM-PROD` before querying |
+
+### Step 2 — Per-RG Sequential Query
+
+For each RG in the cache, run `az policy state list`. Group by subscription to minimize
+context switches: query all dev/qa/stage RGs first, then switch to prod and query prod RGs.
 
 ```bash
-# Ensure resource-graph extension is present
-az extension add --name resource-graph --only-show-errors 2>/dev/null || true
+# For each RG (dev/qa/stage — no subscription switch needed)
+az policy state list \
+  --resource-group "<rg_name>" \
+  --filter "complianceState eq 'NonCompliant'" \
+  --query "[].{
+    policy:policyDefinitionName,
+    effect:policyDefinitionAction,
+    resourceId:resourceId,
+    resourceType:resourceType,
+    policySet:policySetDefinitionName
+  }" \
+  -o json
 
-# Build the KQL in~ list from cache
-RG_LIST=$(jq -r '[.resource_groups[].name] | map("\"" + . + "\"") | join(",")' \
-  /home/saldave/projects/.vscode/docs/plan/rg-cache.json)
+# Before querying prod RGs — switch subscription
+az account set --subscription "WTW-BDAIM-PROD"
 
-az graph query -q "
-policyresources
-| where type == 'microsoft.policyinsights/policystates/latest'
-| where properties.complianceState == 'NonCompliant'
-| where resourceGroup in~ ($RG_LIST)
-| project
-    rg           = resourceGroup,
-    policy       = properties.policyDefinitionName,
-    effect       = properties.policyDefinitionAction,
-    resourceId   = properties.resourceId,
-    resourceType = properties.resourceType,
-    policySet    = properties.policySetDefinitionName
-| order by rg asc
-" --first 1000 -o json
+# Then run the same command for each prod RG
 ```
 
-This is **one API call** for all RGs. Token output is compact TSV-style JSON, not per-RG
-verbose blobs.
+Switch back to the DEV subscription after prod queries complete:
+```bash
+az account set --subscription "<dev-subscription-name>"
+```
 
-**Fallback — if Resource Graph is unavailable or subscription lacks access:**
-Fall back to per-RG calls using the original command in [policy-commands.md](./references/policy-commands.md).
-Emit `FALLBACK:per-rg-sequential` so the caller knows which path was taken.
+**ReAct per RG:**
+- **Reason**: "How many non-compliant findings? Are any `deny` effect — meaning active resource deployment is being blocked?"
+- **Act**: Collect and structure the raw output
+- **Reflect**: Are the affected resources tied to resources managed by the owning repo?
 
 ### Step 3 — Classify by Severity
 
@@ -91,7 +97,7 @@ For each RG:
 
 ### Step 5 — Get Policy Display Details (Optional Enrichment)
 
-For each **unique** policy definition found across all RGs (not per-RG), retrieve display name once:
+For each **unique** policy definition found across all RGs (not per-RG — deduplicate first), retrieve display name once:
 
 ```bash
 az policy definition show \
@@ -141,9 +147,9 @@ Write the following structure:
     "rgs_checked": "<n>",
     "rgs_non_compliant": "<n>",
     "rgs_compliant": "<n>",
-    "query_mode": "resource-graph-batch | per-rg-sequential"
+    "query_mode": "per-rg-sequential"
   },
-  "compliance_results": [ ]
+  "compliance_results": []
 }
 ```
 
@@ -157,7 +163,7 @@ RGS_COMPLIANT:<n>
 
 ### Step 7 — Summary Table
 
-Output the human-readable summary table (this stays in context for the user to review):
+Output the human-readable summary table (stays in context for the user to review):
 
 ```
 === POLICY COMPLIANCE SUMMARY ===
@@ -174,7 +180,7 @@ Subscription: <name>
 | Error | Action |
 |-------|--------|
 | RG not found in Azure | Record as `status: not_found` — may be plan-only or inactive |
-| Resource Graph timeout | Retry once with `--first 500`; if fails, fall back to per-RG |
+| az CLI timeout | Retry once; if fails again, record as `status: scan_error` |
 | Subscription access denied | Record as `status: access_restricted`; do NOT stop the scan |
 | Empty result (no policies) | Record as `status: no_policies_assigned` |
 
@@ -184,6 +190,7 @@ Subscription: <name>
 - DO NOT skip RGs that return errors — record them as scan gaps
 - ALWAYS check `az account show` before running queries
 - ALWAYS write `policy-findings.json` before returning — Phase 3 depends on it
+- ALWAYS restore the original subscription context after querying prod RGs
 
 ## Policy Reference
 
