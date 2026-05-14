@@ -1,24 +1,24 @@
 {
   "meta": {
-    "generated": "2026-05-14T05:50:39.508921+00:00",
+    "generated": "2026-05-14T06:03:52.137814+00:00",
     "rgs_checked": 44,
     "rgs_non_compliant": 32,
-    "rgs_compliant": 12,
-    "query_mode": "per-rg-sequential",
-    "fallback": "resource-graph-unavailable"
+    "rgs_compliant": 1,
+    "rgs_access_restricted": 11,
+    "query_mode": "per-rg-sequential"
   },
   "compliance_results": [
     {
       "rg": "BDAIM-D-NA26-FundingCalculation-RGRP",
       "repo": "funding-calculation",
-      "environment": "dev",
       "group": "calculation",
+      "environment": "dev",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -31,7 +31,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -57,7 +57,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -70,7 +70,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -83,7 +83,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -96,7 +96,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -109,7 +109,7 @@
         },
         {
           "policy_name": "ab6a902f-9493-453b-928d-62c30b11b5a6",
-          "display_name": "Function apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "ab6a902f-9493-453b-928d-62c30b11b5a6",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -135,7 +135,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -148,7 +148,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -165,14 +165,14 @@
     {
       "rg": "BDAIM-Q-NA26-FundingCalculation-RGRP",
       "repo": "funding-calculation",
-      "environment": "qa",
       "group": "calculation",
+      "environment": "qa",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -185,7 +185,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -211,7 +211,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -224,7 +224,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -237,7 +237,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -250,7 +250,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -263,7 +263,7 @@
         },
         {
           "policy_name": "ab6a902f-9493-453b-928d-62c30b11b5a6",
-          "display_name": "Function apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "ab6a902f-9493-453b-928d-62c30b11b5a6",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -289,7 +289,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -302,7 +302,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -319,14 +319,14 @@
     {
       "rg": "BDAIM-S-NA26-FundingCalculation-RGRP",
       "repo": "funding-calculation",
-      "environment": "stage",
       "group": "calculation",
+      "environment": "stage",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "ab6a902f-9493-453b-928d-62c30b11b5a6",
-          "display_name": "Function apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "ab6a902f-9493-453b-928d-62c30b11b5a6",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -339,7 +339,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -352,7 +352,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -378,7 +378,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -391,7 +391,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -404,7 +404,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -417,7 +417,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -443,7 +443,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -456,7 +456,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -471,20 +471,10 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-FundingCalculation-RGRP",
-      "repo": "funding-calculation",
-      "environment": "prod",
-      "group": "calculation",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-HRAFundingEngine-RGRP",
       "repo": "hra-foundry",
-      "environment": "dev",
       "group": "calculation",
+      "environment": "dev",
       "status": "compliant",
       "max_severity": "NONE",
       "non_compliant_policies": [],
@@ -493,14 +483,14 @@
     {
       "rg": "BDAIM-Q-NA26-HRAFundingEngine-RGRP",
       "repo": "hra-foundry",
-      "environment": "qa",
       "group": "calculation",
+      "environment": "qa",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -521,7 +511,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -563,7 +553,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -576,7 +566,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -589,7 +579,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -610,7 +600,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -644,7 +634,7 @@
         },
         {
           "policy_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
-          "display_name": "SQL databases should have vulnerability findings resolved",
+          "display_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -657,7 +647,7 @@
         },
         {
           "policy_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
-          "display_name": "Public network access on Azure SQL Database should be disabled",
+          "display_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -670,7 +660,7 @@
         },
         {
           "policy_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
-          "display_name": "Private endpoint connections on Azure SQL Database should be enabled",
+          "display_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -696,7 +686,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -713,14 +703,14 @@
     {
       "rg": "BDAIM-S-NA26-HRAFundingEngine-RGRP",
       "repo": "hra-foundry",
-      "environment": "stage",
       "group": "calculation",
+      "environment": "stage",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -741,7 +731,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -783,7 +773,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -804,7 +794,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -825,7 +815,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -838,7 +828,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -864,7 +854,7 @@
         },
         {
           "policy_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
-          "display_name": "SQL databases should have vulnerability findings resolved",
+          "display_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -877,7 +867,7 @@
         },
         {
           "policy_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
-          "display_name": "Public network access on Azure SQL Database should be disabled",
+          "display_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -890,7 +880,7 @@
         },
         {
           "policy_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
-          "display_name": "Private endpoint connections on Azure SQL Database should be enabled",
+          "display_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -916,7 +906,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -931,26 +921,16 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-HRAFundingEngine-RGRP",
-      "repo": "hra-foundry",
-      "environment": "prod",
-      "group": "calculation",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-FundingCommunication-RGRP",
-      "repo": "funding-communication-infrastructure",
+      "repo": "funding-communication",
+      "group": "facilitation",
       "environment": "dev",
-      "group": "exports",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -967,7 +947,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1001,7 +981,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1018,7 +998,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1035,7 +1015,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1048,7 +1028,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1074,7 +1054,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1087,7 +1067,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1103,15 +1083,15 @@
     },
     {
       "rg": "BDAIM-Q-NA26-FundingCommunication-RGRP",
-      "repo": "funding-communication-infrastructure",
+      "repo": "funding-communication",
+      "group": "facilitation",
       "environment": "qa",
-      "group": "exports",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1128,7 +1108,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1162,7 +1142,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1179,7 +1159,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1196,7 +1176,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1209,7 +1189,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1235,7 +1215,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1248,7 +1228,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1264,15 +1244,15 @@
     },
     {
       "rg": "BDAIM-S-NA26-FundingCommunication-RGRP",
-      "repo": "funding-communication-infrastructure",
+      "repo": "funding-communication",
+      "group": "facilitation",
       "environment": "stage",
-      "group": "exports",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1289,7 +1269,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1323,7 +1303,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1340,7 +1320,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1357,7 +1337,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1370,7 +1350,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1396,7 +1376,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1409,7 +1389,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1424,20 +1404,10 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-FundingCommunication-RGRP",
-      "repo": "funding-communication-infrastructure",
-      "environment": "prod",
-      "group": "exports",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-FundingDataTransfer-RGRP",
-      "repo": "funding-data-transfer-infrastructure",
-      "environment": "dev",
+      "repo": "funding-data-transfer",
       "group": "exports",
+      "environment": "dev",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
@@ -1468,7 +1438,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1493,7 +1463,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1518,7 +1488,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1539,7 +1509,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1560,7 +1530,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1573,7 +1543,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1599,7 +1569,7 @@
         },
         {
           "policy_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
-          "display_name": "SQL databases should have vulnerability findings resolved",
+          "display_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1612,7 +1582,7 @@
         },
         {
           "policy_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
-          "display_name": "Public network access on Azure SQL Database should be disabled",
+          "display_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1625,7 +1595,7 @@
         },
         {
           "policy_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
-          "display_name": "Private endpoint connections on Azure SQL Database should be enabled",
+          "display_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1651,7 +1621,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1664,7 +1634,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1677,7 +1647,7 @@
         },
         {
           "policy_name": "BDAIM-Role-Assignment",
-          "display_name": "BDAIM - Role Assignment",
+          "display_name": "BDAIM-Role-Assignment",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1693,15 +1663,15 @@
     },
     {
       "rg": "BDAIM-Q-NA26-FundingDataTransfer-RGRP",
-      "repo": "funding-data-transfer-infrastructure",
-      "environment": "qa",
+      "repo": "funding-data-transfer",
       "group": "exports",
+      "environment": "qa",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1722,7 +1692,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1764,7 +1734,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1777,7 +1747,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1790,7 +1760,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1811,7 +1781,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1845,7 +1815,7 @@
         },
         {
           "policy_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
-          "display_name": "SQL databases should have vulnerability findings resolved",
+          "display_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1858,7 +1828,7 @@
         },
         {
           "policy_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
-          "display_name": "Public network access on Azure SQL Database should be disabled",
+          "display_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1871,7 +1841,7 @@
         },
         {
           "policy_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
-          "display_name": "Private endpoint connections on Azure SQL Database should be enabled",
+          "display_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1897,7 +1867,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1910,7 +1880,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -1926,15 +1896,15 @@
     },
     {
       "rg": "BDAIM-S-NA26-FundingDataTransfer-RGRP",
-      "repo": "funding-data-transfer-infrastructure",
-      "environment": "stage",
+      "repo": "funding-data-transfer",
       "group": "exports",
+      "environment": "stage",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1955,7 +1925,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -1997,7 +1967,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2018,7 +1988,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2039,7 +2009,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2052,7 +2022,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2078,7 +2048,7 @@
         },
         {
           "policy_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
-          "display_name": "SQL databases should have vulnerability findings resolved",
+          "display_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2091,7 +2061,7 @@
         },
         {
           "policy_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
-          "display_name": "Public network access on Azure SQL Database should be disabled",
+          "display_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2104,7 +2074,7 @@
         },
         {
           "policy_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
-          "display_name": "Private endpoint connections on Azure SQL Database should be enabled",
+          "display_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2130,7 +2100,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2143,7 +2113,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2158,26 +2128,16 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-FundingDataTransfer-RGRP",
-      "repo": "funding-data-transfer-infrastructure",
-      "environment": "prod",
-      "group": "exports",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-FundingReimbursement-RGRP",
-      "repo": "funding-reimbursement-infrastructure",
+      "repo": "funding-reimbursement",
+      "group": "facilitation",
       "environment": "dev",
-      "group": "exports",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2194,7 +2154,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2228,7 +2188,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2245,7 +2205,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2262,7 +2222,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2279,7 +2239,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2309,7 +2269,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2322,7 +2282,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2335,7 +2295,7 @@
         },
         {
           "policy_name": "5752e6d6-1206-46d8-8ab1-ecc2f71a8112",
-          "display_name": "Windows machines should be configured to use secure communication protocols",
+          "display_name": "5752e6d6-1206-46d8-8ab1-ecc2f71a8112",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2348,7 +2308,7 @@
         },
         {
           "policy_name": "bed48b13-6647-468e-aa2f-1af1d3f4dd40",
-          "display_name": "Windows Defender Exploit Guard should be enabled on your machines",
+          "display_name": "bed48b13-6647-468e-aa2f-1af1d3f4dd40",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2361,7 +2321,7 @@
         },
         {
           "policy_name": "3dc5edcd-002d-444c-b216-e123bbfa37c0",
-          "display_name": "Windows virtual machines should enable Azure Disk Encryption or EncryptionAtHost.",
+          "display_name": "3dc5edcd-002d-444c-b216-e123bbfa37c0",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2374,7 +2334,7 @@
         },
         {
           "policy_name": "72650e9f-97bc-4b2a-ab5f-9781a9fcecbc",
-          "display_name": "Windows machines should meet requirements of the Azure compute security baseline",
+          "display_name": "72650e9f-97bc-4b2a-ab5f-9781a9fcecbc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2387,7 +2347,7 @@
         },
         {
           "policy_name": "6ba6d016-e7c3-4842-b8f2-4992ebc0d72d",
-          "display_name": "SQL servers on machines should have vulnerability findings resolved",
+          "display_name": "6ba6d016-e7c3-4842-b8f2-4992ebc0d72d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2400,7 +2360,7 @@
         },
         {
           "policy_name": "f85bf3e0-d513-442e-89c3-1784ad63382b",
-          "display_name": "System updates should be installed on your machines (powered by Update Center)",
+          "display_name": "f85bf3e0-d513-442e-89c3-1784ad63382b",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2413,7 +2373,7 @@
         },
         {
           "policy_name": "ae89ebca-1c92-4898-ac2c-9f63decb045c",
-          "display_name": "Guest Configuration extension should be installed on your machines",
+          "display_name": "ae89ebca-1c92-4898-ac2c-9f63decb045c",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2426,7 +2386,7 @@
         },
         {
           "policy_name": "fc4d8e41-e223-45ea-9bf5-eada37891d87",
-          "display_name": "Virtual machines and virtual machine scale sets should have encryption at host enabled",
+          "display_name": "fc4d8e41-e223-45ea-9bf5-eada37891d87",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2442,15 +2402,15 @@
     },
     {
       "rg": "BDAIM-Q-NA26-FundingReimbursement-RGRP",
-      "repo": "funding-reimbursement-infrastructure",
+      "repo": "funding-reimbursement",
+      "group": "facilitation",
       "environment": "qa",
-      "group": "exports",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2467,7 +2427,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2501,7 +2461,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2518,7 +2478,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2535,7 +2495,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2552,7 +2512,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2582,7 +2542,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2595,7 +2555,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2611,15 +2571,15 @@
     },
     {
       "rg": "BDAIM-S-NA26-FundingReimbursement-RGRP",
-      "repo": "funding-reimbursement-infrastructure",
+      "repo": "funding-reimbursement",
+      "group": "facilitation",
       "environment": "stage",
-      "group": "exports",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2636,7 +2596,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2670,7 +2630,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2687,7 +2647,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2704,7 +2664,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2721,7 +2681,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2751,7 +2711,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2764,7 +2724,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2777,7 +2737,7 @@
         },
         {
           "policy_name": "3dc5edcd-002d-444c-b216-e123bbfa37c0",
-          "display_name": "Windows virtual machines should enable Azure Disk Encryption or EncryptionAtHost.",
+          "display_name": "3dc5edcd-002d-444c-b216-e123bbfa37c0",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2790,7 +2750,7 @@
         },
         {
           "policy_name": "72650e9f-97bc-4b2a-ab5f-9781a9fcecbc",
-          "display_name": "Windows machines should meet requirements of the Azure compute security baseline",
+          "display_name": "72650e9f-97bc-4b2a-ab5f-9781a9fcecbc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2803,7 +2763,7 @@
         },
         {
           "policy_name": "bed48b13-6647-468e-aa2f-1af1d3f4dd40",
-          "display_name": "Windows Defender Exploit Guard should be enabled on your machines",
+          "display_name": "bed48b13-6647-468e-aa2f-1af1d3f4dd40",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2816,7 +2776,7 @@
         },
         {
           "policy_name": "5752e6d6-1206-46d8-8ab1-ecc2f71a8112",
-          "display_name": "Windows machines should be configured to use secure communication protocols",
+          "display_name": "5752e6d6-1206-46d8-8ab1-ecc2f71a8112",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2829,7 +2789,7 @@
         },
         {
           "policy_name": "ae89ebca-1c92-4898-ac2c-9f63decb045c",
-          "display_name": "Guest Configuration extension should be installed on your machines",
+          "display_name": "ae89ebca-1c92-4898-ac2c-9f63decb045c",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2842,7 +2802,7 @@
         },
         {
           "policy_name": "6ba6d016-e7c3-4842-b8f2-4992ebc0d72d",
-          "display_name": "SQL servers on machines should have vulnerability findings resolved",
+          "display_name": "6ba6d016-e7c3-4842-b8f2-4992ebc0d72d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2855,7 +2815,7 @@
         },
         {
           "policy_name": "fc4d8e41-e223-45ea-9bf5-eada37891d87",
-          "display_name": "Virtual machines and virtual machine scale sets should have encryption at host enabled",
+          "display_name": "fc4d8e41-e223-45ea-9bf5-eada37891d87",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2870,26 +2830,16 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-FundingReimbursement-RGRP",
-      "repo": "funding-reimbursement-infrastructure",
-      "environment": "prod",
-      "group": "exports",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-FundingEligibility-RGRP",
-      "repo": "funding-eligibility-infrastructure",
-      "environment": "dev",
+      "repo": "funding-eligibility",
       "group": "facilitation",
+      "environment": "dev",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
-          "display_name": "App Service apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2910,7 +2860,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2927,7 +2877,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -2961,7 +2911,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2978,7 +2928,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -2995,7 +2945,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3012,7 +2962,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3042,7 +2992,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3055,7 +3005,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3071,15 +3021,15 @@
     },
     {
       "rg": "BDAIM-Q-NA26-FundingEligibility-RGRP",
-      "repo": "funding-eligibility-infrastructure",
-      "environment": "qa",
+      "repo": "funding-eligibility",
       "group": "facilitation",
+      "environment": "qa",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
-          "display_name": "App Service apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3100,7 +3050,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3117,7 +3067,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3151,7 +3101,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3168,7 +3118,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3185,7 +3135,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3202,7 +3152,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3232,7 +3182,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3245,7 +3195,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3261,15 +3211,15 @@
     },
     {
       "rg": "BDAIM-S-NA26-FundingEligibility-RGRP",
-      "repo": "funding-eligibility-infrastructure",
-      "environment": "stage",
+      "repo": "funding-eligibility",
       "group": "facilitation",
+      "environment": "stage",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
-          "display_name": "App Service apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3290,7 +3240,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3307,7 +3257,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3341,7 +3291,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3358,7 +3308,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3375,7 +3325,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3392,7 +3342,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3422,7 +3372,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3435,7 +3385,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3450,26 +3400,16 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-FundingEligibility-RGRP",
-      "repo": "funding-eligibility-infrastructure",
-      "environment": "prod",
-      "group": "facilitation",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-FundingQualification-RGRP",
-      "repo": "funding-qualification-infrastructure",
-      "environment": "dev",
+      "repo": "funding-qualification",
       "group": "facilitation",
+      "environment": "dev",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3482,7 +3422,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3508,7 +3448,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3521,7 +3461,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3534,7 +3474,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3547,7 +3487,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3560,7 +3500,7 @@
         },
         {
           "policy_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
-          "display_name": "App Service apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3586,7 +3526,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3602,15 +3542,15 @@
     },
     {
       "rg": "BDAIM-Q-NA26-FundingQualification-RGRP",
-      "repo": "funding-qualification-infrastructure",
-      "environment": "qa",
+      "repo": "funding-qualification",
       "group": "facilitation",
+      "environment": "qa",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
-          "display_name": "App Service apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3623,7 +3563,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3636,7 +3576,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3662,7 +3602,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3675,7 +3615,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3688,7 +3628,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3701,7 +3641,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3727,7 +3667,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3743,15 +3683,15 @@
     },
     {
       "rg": "BDAIM-S-NA26-FundingQualification-RGRP",
-      "repo": "funding-qualification-infrastructure",
-      "environment": "stage",
+      "repo": "funding-qualification",
       "group": "facilitation",
+      "environment": "stage",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
-          "display_name": "App Service apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3764,7 +3704,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3777,7 +3717,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3803,7 +3743,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3816,7 +3756,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3829,7 +3769,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3842,7 +3782,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3868,7 +3808,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3883,26 +3823,16 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-FundingQualification-RGRP",
-      "repo": "funding-qualification-infrastructure",
-      "environment": "prod",
-      "group": "facilitation",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-FundingEnrollmentSupport-RGRP",
-      "repo": "funding-enrollment-support-infrastructure",
-      "environment": "dev",
+      "repo": "funding-enrollment-support",
       "group": "facilitation",
+      "environment": "dev",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
-          "display_name": "App Service apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3915,7 +3845,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3928,7 +3858,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -3954,7 +3884,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3967,7 +3897,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3980,7 +3910,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -3993,7 +3923,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4019,7 +3949,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4032,7 +3962,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4048,15 +3978,15 @@
     },
     {
       "rg": "BDAIM-Q-NA26-FundingEnrollmentSupport-RGRP",
-      "repo": "funding-enrollment-support-infrastructure",
-      "environment": "qa",
+      "repo": "funding-enrollment-support",
       "group": "facilitation",
+      "environment": "qa",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
-          "display_name": "App Service apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4069,7 +3999,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4082,7 +4012,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4108,7 +4038,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4121,7 +4051,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4134,7 +4064,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4147,7 +4077,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4173,7 +4103,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4186,7 +4116,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4202,15 +4132,15 @@
     },
     {
       "rg": "BDAIM-S-NA26-FundingEnrollmentSupport-RGRP",
-      "repo": "funding-enrollment-support-infrastructure",
-      "environment": "stage",
+      "repo": "funding-enrollment-support",
       "group": "facilitation",
+      "environment": "stage",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
-          "display_name": "App Service apps should have Client Certificates (Incoming client certificates) enabled",
+          "display_name": "19dd1db6-f442-49cf-a838-b0786b4401ef",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4223,7 +4153,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4236,7 +4166,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4262,7 +4192,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4275,7 +4205,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4288,7 +4218,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4301,7 +4231,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4327,7 +4257,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4340,7 +4270,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4355,26 +4285,16 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-FundingEnrollmentSupport-RGRP",
-      "repo": "funding-enrollment-support-infrastructure",
-      "environment": "prod",
-      "group": "facilitation",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-ClientImplementations-RGRP",
-      "repo": "client-implementations-infra",
-      "environment": "dev",
+      "repo": "funding-client-implementations",
       "group": "configuration",
+      "environment": "dev",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4391,7 +4311,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4425,7 +4345,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4438,7 +4358,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4451,7 +4371,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4468,7 +4388,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4498,7 +4418,7 @@
         },
         {
           "policy_name": "ef2a8f2a-b3d9-49cd-a8a8-9a3aaaf647d9",
-          "display_name": "Vulnerability assessment should be enabled on your SQL servers",
+          "display_name": "ef2a8f2a-b3d9-49cd-a8a8-9a3aaaf647d9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4511,7 +4431,7 @@
         },
         {
           "policy_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
-          "display_name": "SQL databases should have vulnerability findings resolved",
+          "display_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4524,7 +4444,7 @@
         },
         {
           "policy_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
-          "display_name": "Public network access on Azure SQL Database should be disabled",
+          "display_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4537,7 +4457,7 @@
         },
         {
           "policy_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
-          "display_name": "Private endpoint connections on Azure SQL Database should be enabled",
+          "display_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4550,7 +4470,7 @@
         },
         {
           "policy_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
-          "display_name": "[Preview]: All Internet traffic should be routed via your deployed Azure Firewall",
+          "display_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4576,7 +4496,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4589,7 +4509,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4602,7 +4522,7 @@
         },
         {
           "policy_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
-          "display_name": "Azure Cosmos DB should disable public network access",
+          "display_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4618,15 +4538,15 @@
     },
     {
       "rg": "BDAIM-Q-NA26-ClientImplementations-RGRP",
-      "repo": "client-implementations-infra",
-      "environment": "qa",
+      "repo": "funding-client-implementations",
       "group": "configuration",
+      "environment": "qa",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4652,7 +4572,7 @@
         },
         {
           "policy_name": "ef2a8f2a-b3d9-49cd-a8a8-9a3aaaf647d9",
-          "display_name": "Vulnerability assessment should be enabled on your SQL servers",
+          "display_name": "ef2a8f2a-b3d9-49cd-a8a8-9a3aaaf647d9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4665,7 +4585,7 @@
         },
         {
           "policy_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
-          "display_name": "SQL databases should have vulnerability findings resolved",
+          "display_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4678,7 +4598,7 @@
         },
         {
           "policy_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
-          "display_name": "Public network access on Azure SQL Database should be disabled",
+          "display_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4691,7 +4611,7 @@
         },
         {
           "policy_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
-          "display_name": "Private endpoint connections on Azure SQL Database should be enabled",
+          "display_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4704,7 +4624,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4721,7 +4641,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4755,7 +4675,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4768,7 +4688,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4781,7 +4701,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4798,7 +4718,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4815,7 +4735,7 @@
         },
         {
           "policy_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
-          "display_name": "[Preview]: All Internet traffic should be routed via your deployed Azure Firewall",
+          "display_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4841,7 +4761,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4854,7 +4774,7 @@
         },
         {
           "policy_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
-          "display_name": "Azure Cosmos DB should disable public network access",
+          "display_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4870,15 +4790,15 @@
     },
     {
       "rg": "BDAIM-S-NA26-ClientImplementations-RGRP",
-      "repo": "client-implementations-infra",
-      "environment": "stage",
+      "repo": "funding-client-implementations",
       "group": "configuration",
+      "environment": "stage",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4904,7 +4824,7 @@
         },
         {
           "policy_name": "ef2a8f2a-b3d9-49cd-a8a8-9a3aaaf647d9",
-          "display_name": "Vulnerability assessment should be enabled on your SQL servers",
+          "display_name": "ef2a8f2a-b3d9-49cd-a8a8-9a3aaaf647d9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4917,7 +4837,7 @@
         },
         {
           "policy_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
-          "display_name": "SQL databases should have vulnerability findings resolved",
+          "display_name": "feedbf84-6b99-488c-acc2-71c829aa5ffc",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4930,7 +4850,7 @@
         },
         {
           "policy_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
-          "display_name": "Public network access on Azure SQL Database should be disabled",
+          "display_name": "1b8ca024-1d5c-4dec-8995-b1a932b41780",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4943,7 +4863,7 @@
         },
         {
           "policy_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
-          "display_name": "Private endpoint connections on Azure SQL Database should be enabled",
+          "display_name": "7698e800-9299-47a6-b3b6-5a0fee576eed",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -4956,7 +4876,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -4973,7 +4893,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5007,7 +4927,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5024,7 +4944,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5041,7 +4961,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5054,7 +4974,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5067,7 +4987,7 @@
         },
         {
           "policy_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
-          "display_name": "[Preview]: All Internet traffic should be routed via your deployed Azure Firewall",
+          "display_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5093,7 +5013,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5106,7 +5026,7 @@
         },
         {
           "policy_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
-          "display_name": "Azure Cosmos DB should disable public network access",
+          "display_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5121,26 +5041,16 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-ClientImplementations-RGRP",
-      "repo": "client-implementations-infra",
-      "environment": "prod",
-      "group": "configuration",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-ClientData-RGRP",
-      "repo": "client-data-azure-infrastructure",
-      "environment": "dev",
+      "repo": "funding-client-data",
       "group": "configuration",
+      "environment": "dev",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5153,7 +5063,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5179,7 +5089,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5192,7 +5102,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5205,7 +5115,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5218,7 +5128,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5244,7 +5154,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5257,7 +5167,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5273,15 +5183,15 @@
     },
     {
       "rg": "BDAIM-Q-NA26-ClientData-RGRP",
-      "repo": "client-data-azure-infrastructure",
-      "environment": "qa",
+      "repo": "funding-client-data",
       "group": "configuration",
+      "environment": "qa",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5294,7 +5204,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5320,7 +5230,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5333,7 +5243,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5346,7 +5256,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5359,7 +5269,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5385,7 +5295,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5398,7 +5308,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5414,15 +5324,15 @@
     },
     {
       "rg": "BDAIM-S-NA26-ClientData-RGRP",
-      "repo": "client-data-azure-infrastructure",
-      "environment": "stage",
+      "repo": "funding-client-data",
       "group": "configuration",
+      "environment": "stage",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5435,7 +5345,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5461,7 +5371,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5474,7 +5384,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5487,7 +5397,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5500,7 +5410,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5526,7 +5436,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5539,7 +5449,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5554,26 +5464,16 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-ClientData-RGRP",
-      "repo": "client-data-azure-infrastructure",
-      "environment": "prod",
-      "group": "configuration",
-      "status": "compliant",
-      "max_severity": "NONE",
-      "non_compliant_policies": [],
-      "compliant": true
-    },
-    {
       "rg": "BDAIM-D-NA26-ClientGuides-RGRP",
-      "repo": "client-guides-infrastructure",
-      "environment": "dev",
+      "repo": "funding-client-guides",
       "group": "configuration",
+      "environment": "dev",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5586,7 +5486,7 @@
         },
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5612,7 +5512,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5625,7 +5525,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5638,7 +5538,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5651,7 +5551,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5664,7 +5564,7 @@
         },
         {
           "policy_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
-          "display_name": "[Preview]: All Internet traffic should be routed via your deployed Azure Firewall",
+          "display_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5690,7 +5590,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5703,7 +5603,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5716,7 +5616,7 @@
         },
         {
           "policy_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
-          "display_name": "Azure Cosmos DB should disable public network access",
+          "display_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5729,7 +5629,7 @@
         },
         {
           "policy_name": "BDAIM-Role-Assignment",
-          "display_name": "BDAIM - Role Assignment",
+          "display_name": "BDAIM-Role-Assignment",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5753,15 +5653,15 @@
     },
     {
       "rg": "BDAIM-Q-NA26-ClientGuides-RGRP",
-      "repo": "client-guides-infrastructure",
-      "environment": "qa",
+      "repo": "funding-client-guides",
       "group": "configuration",
+      "environment": "qa",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5774,7 +5674,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5800,7 +5700,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5813,7 +5713,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5826,7 +5726,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5839,7 +5739,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5852,7 +5752,7 @@
         },
         {
           "policy_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
-          "display_name": "[Preview]: All Internet traffic should be routed via your deployed Azure Firewall",
+          "display_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5878,7 +5778,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5891,7 +5791,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5904,7 +5804,7 @@
         },
         {
           "policy_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
-          "display_name": "Azure Cosmos DB should disable public network access",
+          "display_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5920,15 +5820,15 @@
     },
     {
       "rg": "BDAIM-S-NA26-ClientGuides-RGRP",
-      "repo": "client-guides-infrastructure",
-      "environment": "stage",
+      "repo": "funding-client-guides",
       "group": "configuration",
+      "environment": "stage",
       "status": "non_compliant",
       "max_severity": "LOW",
       "non_compliant_policies": [
         {
           "policy_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
-          "display_name": "Storage accounts should use private link (excluding storage accounts created by Databricks)",
+          "display_name": "1604f626-4d8d-4124-8bb8-b1e5f95562de",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5941,7 +5841,7 @@
         },
         {
           "policy_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
-          "display_name": "Storage accounts should use private link",
+          "display_name": "6edd7eda-6dd8-40f7-810d-67160c639cd9",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -5967,7 +5867,7 @@
         },
         {
           "policy_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
-          "display_name": "Storage accounts should prevent shared key access (excluding storage accounts created by Databricks)",
+          "display_name": "fd9903f1-38c2-4d36-8e44-5c1c20c561e8",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5980,7 +5880,7 @@
         },
         {
           "policy_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
-          "display_name": "Storage accounts should prevent shared key access",
+          "display_name": "8c6a50c6-9ffd-4ae7-986f-5fa6111f9a54",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -5993,7 +5893,7 @@
         },
         {
           "policy_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
-          "display_name": "Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks)",
+          "display_name": "db4f9b05-5ffd-4b34-b714-3c710dbb3fd6",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -6006,7 +5906,7 @@
         },
         {
           "policy_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
-          "display_name": "Storage accounts should restrict network access using virtual network rules",
+          "display_name": "2a1a9cdf-e04d-429a-8416-3bfb72a1b26f",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -6019,7 +5919,7 @@
         },
         {
           "policy_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
-          "display_name": "[Preview]: All Internet traffic should be routed via your deployed Azure Firewall",
+          "display_name": "fc5e4038-4584-4632-8c85-c0448d374b2c",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -6045,7 +5945,7 @@
         },
         {
           "policy_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
-          "display_name": "Resource logs in Logic Apps should be enabled",
+          "display_name": "34f95f76-5386-4de7-b824-0d8478470c9d",
           "effect": "auditifnotexists",
           "severity": "LOW",
           "affected_resources": [
@@ -6058,7 +5958,7 @@
         },
         {
           "policy_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
-          "display_name": "Azure Key Vaults should use private link",
+          "display_name": "a6abeaec-4d90-4a02-805f-6b26c4d3fbe9",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -6071,7 +5971,7 @@
         },
         {
           "policy_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
-          "display_name": "Azure Cosmos DB should disable public network access",
+          "display_name": "797b37f7-06b8-444c-b1ad-fc62867f335a",
           "effect": "audit",
           "severity": "LOW",
           "affected_resources": [
@@ -6086,14 +5986,125 @@
       "compliant": false
     },
     {
-      "rg": "BDAIM-P-NA26-ClientGuides-RGRP",
-      "repo": "client-guides-infrastructure",
+      "rg": "BDAIM-P-NA26-FundingCalculation-RGRP",
+      "repo": "funding-calculation",
+      "group": "calculation",
       "environment": "prod",
-      "group": "configuration",
-      "status": "compliant",
-      "max_severity": "NONE",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
       "non_compliant_policies": [],
-      "compliant": true
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-HRAFundingEngine-RGRP",
+      "repo": "hra-foundry",
+      "group": "calculation",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-FundingCommunication-RGRP",
+      "repo": "funding-communication",
+      "group": "facilitation",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-FundingDataTransfer-RGRP",
+      "repo": "funding-data-transfer",
+      "group": "exports",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-FundingReimbursement-RGRP",
+      "repo": "funding-reimbursement",
+      "group": "facilitation",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-FundingEligibility-RGRP",
+      "repo": "funding-eligibility",
+      "group": "facilitation",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-FundingQualification-RGRP",
+      "repo": "funding-qualification",
+      "group": "facilitation",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-FundingEnrollmentSupport-RGRP",
+      "repo": "funding-enrollment-support",
+      "group": "facilitation",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-ClientImplementations-RGRP",
+      "repo": "funding-client-implementations",
+      "group": "configuration",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-ClientData-RGRP",
+      "repo": "funding-client-data",
+      "group": "configuration",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
+    },
+    {
+      "rg": "BDAIM-P-NA26-ClientGuides-RGRP",
+      "repo": "funding-client-guides",
+      "group": "configuration",
+      "environment": "prod",
+      "status": "access_restricted",
+      "max_severity": "UNKNOWN",
+      "non_compliant_policies": [],
+      "compliant": false,
+      "scan_note": "access_restricted"
     }
   ]
 }
