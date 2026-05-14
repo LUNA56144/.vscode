@@ -24,10 +24,12 @@ If not provided via argument, ask:
 
 ### 2. Run the Script
 
-Locate the script relative to this skill file, then run it:
+The script auto-discovers its location dynamically:
 
 ```bash
-SCRIPT="$(dirname "$(realpath "$0")")/scripts/generate_prod_deployment_announcement.py"
+# Find the skill directory (works from any path)
+SKILL_DIR=$(find . -path "*/skills/generate-prod-deployment-announcement" -type d | head -1)
+SCRIPT="$SKILL_DIR/scripts/generate_prod_deployment_announcement.py"
 
 # Preview only — show announcement in terminal
 python3 "$SCRIPT" YYYY-MM-DD HH:MM
@@ -36,11 +38,14 @@ python3 "$SCRIPT" YYYY-MM-DD HH:MM
 python3 "$SCRIPT" YYYY-MM-DD HH:MM --post
 ```
 
-When running from an agent context, resolve the script path by finding this skill's directory in the workspace:
+Or from the workspace root (auto-discovers `.vscode/.github` or `.github`):
 
 ```bash
-# From the workspace root
-python3 .github/skills/generate-prod-deployment-announcement/scripts/generate_prod_deployment_announcement.py YYYY-MM-DD HH:MM
+# Preview only
+python3 $(find . -path "*/skills/generate-prod-deployment-announcement/scripts/generate_prod_deployment_announcement.py" | head -1) YYYY-MM-DD HH:MM
+
+# Post to Teams
+python3 $(find . -path "*/skills/generate-prod-deployment-announcement/scripts/generate_prod_deployment_announcement.py" | head -1) YYYY-MM-DD HH:MM --post
 ```
 
 The script:
