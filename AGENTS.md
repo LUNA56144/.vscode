@@ -29,6 +29,15 @@ Skill location: `.github/skills/infra-task-workflow/SKILL.md`
 | `git-sync-main` | "pull latest", "sync repos", "update main" |
 | `tf-plan-risk-summary` | "risk summary", PR with autoplan comment |
 | `pr-deprecated-comments` | "clean up PR comments", "stale comments" |
+| `rg-scanner` | "scan resource groups", "find rg names", "audit terraform rg" |
+| `rg-jira-bulk` | "bulk jira tickets", "create tickets from rg scan", "batch ticket creation" |
+
+## Custom Agents available
+
+| Agent | Trigger |
+|-------|---------|
+| `infra-orchestrator` | Any infra task end-to-end |
+| `rg-audit-jira` | "rg audit", "resource group audit", "identify resource groups", "funding rg scan" |
 
 ## Prompts available
 
