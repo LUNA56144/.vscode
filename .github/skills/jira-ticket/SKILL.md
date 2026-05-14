@@ -62,6 +62,7 @@ Do not use this skill for implementation, code changes, or deployment steps.
 - Use default assignee account ID {{712020:513de3f5-d046-4711-9c29-323c5005b3f1}} for Jira assignment by default.
 - Use default Primary Work Source {{Azure}} (option ID {{10811}}) by default unless the user explicitly requests otherwise.
 - If assignee cannot be resolved to an account ID, ask for account ID before creation.
+- After successful creation, immediately transition the issue to status "READY FOR WORK" using the available transition tool.
 
 7. Fallback: Clone-Then-Detach (When Create Is Blocked)
 - Trigger this fallback only when Jira creation fails because required custom fields cannot be set via available mutation tools.
