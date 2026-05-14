@@ -22,7 +22,7 @@ def debug(msg):
     if VERBOSE:
         print(f"  [debug] {msg}")
 
-# Define all 11 funding repositories
+# Define all 10 funding repositories
 REPOS = [
     "im-funding/client-data-azure-infrastructure",
     "im-funding/client-guides-infrastructure",
@@ -31,7 +31,6 @@ REPOS = [
     "im-funding/funding-communication-infrastructure",
     "im-funding/funding-data-transfer-infrastructure",
     "im-funding/funding-reimbursement-infrastructure",
-    "im-funding/log-file-analysis-infrastructure",
     "im-funding/funding-eligibility-infrastructure",
     "im-funding/funding-enrollment-support-infrastructure",
     "im-funding/funding-qualification-infrastructure",
@@ -647,7 +646,16 @@ def main():
     if post_to_channel:
         webhook_url = os.environ.get("TEAMS_WEBHOOK_URL")
         if not webhook_url:
-            print("\n❌ TEAMS_WEBHOOK_URL is not set. Add it to ~/.zshrc and run: source ~/.zshrc")
+            debug("TEAMS_WEBHOOK_URL not in env — fetching from GitHub repo variable")
+            result = subprocess.run(
+                ["gh", "api", "repos/LUNA56144/.vscode/actions/variables/TEAMS_WEBHOOK_URL", "--jq", ".value"],
+                capture_output=True, text=True
+            )
+            webhook_url = result.stdout.strip() if result.returncode == 0 else None
+        if not webhook_url:
+            print("\n❌ Could not resolve TEAMS_WEBHOOK_URL.")
+            print("   Either set it locally:  export TEAMS_WEBHOOK_URL=\"<url>\"")
+            print("   Or ensure gh is authenticated with access to LUNA56144/.vscode")
             sys.exit(1)
         print()
         post_to_teams(announcement, webhook_url, version_details, deployment_date, deployment_time)

@@ -6,13 +6,13 @@ argument-hint: "YYYY-MM-DD HH:MM (e.g. 2025-12-05 22:00)"
 
 # Generate Production Deployment Announcement
 
-Scans all 11 `im-funding` infrastructure repositories, identifies stage-validated versions not yet deployed to production, extracts PR titles, and outputs a ready-to-paste Teams markdown announcement.
+Scans all 10 `im-funding` infrastructure repositories, identifies stage-validated versions not yet deployed to production, extracts PR titles, and outputs a ready-to-paste Teams markdown announcement.
 
 ## Prerequisites
 
 - `gh` CLI authenticated (`gh auth status`)
 - Python 3.6+
-- `TEAMS_WEBHOOK_URL` env var set in `~/.zshrc` (required only for `--post`)
+- Webhook URL stored as a GitHub repo variable (`TEAMS_WEBHOOK_URL` in `LUNA56144/.vscode`) — fetched automatically at runtime
 
 ## Procedure
 
@@ -81,7 +81,7 @@ Report success or failure from the script output. On failure (non-zero exit or e
 |--------|-----------|
 | Configuration | `client-data-azure-infrastructure`, `client-guides-infrastructure`, `client-implementations-infra` |
 | Calculation | `funding-calculation` |
-| Exports | `funding-communication-infrastructure`, `funding-data-transfer-infrastructure`, `funding-reimbursement-infrastructure`, `log-file-analysis-infrastructure` |
+| Exports | `funding-communication-infrastructure`, `funding-data-transfer-infrastructure`, `funding-reimbursement-infrastructure` |
 | Facilitation | `funding-eligibility-infrastructure`, `funding-enrollment-support-infrastructure`, `funding-qualification-infrastructure` |
 
 ## Announcement Format
