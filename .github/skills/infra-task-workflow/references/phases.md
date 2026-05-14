@@ -9,6 +9,24 @@ Full step-by-step procedures for each phase of the infra task workflow.
 After each major step completes, send 3 to 4 short messages in a conversational tone.
 No markdown separators. No "—". Write like a colleague giving a quick heads-up.
 
+---
+
+## Jira Comment Strategy — Confirm Before First Post
+
+> ⛔ **Before posting ANY Jira comment on ANY task type, ask the user:**
+>
+> "Should I post a single comment with full findings, or break this into daily incremental updates leading up to the due date?"
+>
+> **Never post a full diagnosis dump as the first comment without confirming this.**
+>
+> If the user chooses incremental daily updates:
+> - Post one small, focused update per day — drip the diagnosis progressively
+> - Save the full resolution and solution for the final comment (on or just before the due date)
+> - Draft all remaining comments and hand them to the user to post manually, one per day
+>
+> If the user chooses a single comment:
+> - Post the full findings once, clearly structured
+
 Example after setup completes (fresh task — ticket fetched first, then git setup):
 ```
 Pulled the latest ticket from Jira — DEVO-1806, looks like the fileshare access task.
@@ -344,8 +362,10 @@ Invoke [`pr-deprecated-comments`](../../pr-deprecated-comments/SKILL.md) for out
 
 1. Read logs, state, and resource configs (read-only only)
 2. Form hypothesis; test with read-only commands
-3. Present: root cause, affected resources, recommended fix
-4. If fix needed → re-classify as `terraform-change`; re-enter Phase 3-TF
+3. Present hypothesis briefly — confirm user wants full depth before dumping all findings
+4. Present: root cause, affected resources, recommended fix
+5. If fix needed → re-classify as `terraform-change`; re-enter Phase 3-TF
+6. If user takes manual action (screenshot, portal change, AD group add): generate stakeholder-facing response (what was done, why, and the solution in plain language)
 
 ---
 
