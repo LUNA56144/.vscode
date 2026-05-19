@@ -27,6 +27,12 @@ No markdown separators. No "—". Write like a colleague giving a quick heads-up
 > If the user chooses a single comment:
 > - Post the full findings once, clearly structured
 
+> ⚠️ **Always fetch existing comments before drafting new ones.**
+> Use `getJiraIssue` with `fields: ["comment"]` to read what has already been posted.
+> New comments must not contradict or duplicate existing ones. If a prior comment contained
+> inaccurate information (e.g. a misdiagnosis), the next comment should explicitly correct it
+> before presenting updated findings.
+
 Example after setup completes (fresh task — ticket fetched first, then git setup):
 ```
 Pulled the latest ticket from Jira — DEVO-1806, looks like the fileshare access task.
@@ -360,12 +366,19 @@ Invoke [`pr-deprecated-comments`](../../pr-deprecated-comments/SKILL.md) for out
 
 **Success:** Root cause identified; recommended action presented.
 
+> ⚠️ **Investigation tasks targeting Azure resources (not a code repo) skip Phases 1, 2.2, and 2.3.**
+> There is no git branch, no spec file, and no sentinel. Entry goes directly from Phase 2.1
+> (ticket fetch + repo resolution check) into this phase. If the ticket has no repo reference
+> and the task is purely diagnostic (audit, access issue, config check), skip to Phase 3-INV
+> immediately after confirming the ticket.
+
 1. Read logs, state, and resource configs (read-only only)
-2. Form hypothesis; test with read-only commands
-3. Present hypothesis briefly — confirm user wants full depth before dumping all findings
-4. Present: root cause, affected resources, recommended fix
-5. If fix needed → re-classify as `terraform-change`; re-enter Phase 3-TF
-6. If user takes manual action (screenshot, portal change, AD group add): generate stakeholder-facing response (what was done, why, and the solution in plain language)
+2. Run parallel Azure CLI diagnostic tracks (RBAC, network rules, auth config, group membership)
+3. Form hypothesis; test with read-only commands
+4. Present hypothesis briefly — confirm user wants full depth before dumping all findings
+5. Present: root cause, affected resources, recommended fix
+6. If fix needed → re-classify as `terraform-change`; re-enter Phase 3-TF
+7. If user takes manual action (screenshot, portal change, AD group add): generate stakeholder-facing response (what was done, why, and the solution in plain language)
 
 ---
 

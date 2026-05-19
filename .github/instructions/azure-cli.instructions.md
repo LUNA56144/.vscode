@@ -16,6 +16,22 @@ az login
 **Do NOT use `--use-device-code` for `_adm` accounts** — it is blocked by Conditional Access policy.
 `--use-device-code` works fine for regular accounts (e.g. `Sandro.Aldave@towerswatson.com`).
 
+> ⚠️ **ADM token lifetime:** Conditional Access enforces a ~24-hour sign-in frequency for `_adm`
+> accounts. Tokens issued more than 24 hours ago will fail with `AADSTS70043`. Re-run `az login`
+> to refresh — do not spend retry cycles on other auth methods first.
+
+### Fallback: Capture Login URL (when browser redirect isn't auto-opening)
+
+If VS Code port forwarding is not catching the OAuth redirect, use `BROWSER=echo` to print the
+URL instead of trying to open a browser. Share the URL with the user to open manually:
+
+```bash
+BROWSER=echo az login 2>&1 | grep "https://login.microsoftonline.com"
+```
+
+The output will contain the full OAuth URL. The user opens it in their local browser, completes
+MFA, and the token is stored on the remote once the redirect completes.
+
 ---
 
 ### Account → Subscription Mapping
