@@ -32,6 +32,20 @@ No markdown separators. No "—". Write like a colleague giving a quick heads-up
 > New comments must not contradict or duplicate existing ones. If a prior comment contained
 > inaccurate information (e.g. a misdiagnosis), the next comment should explicitly correct it
 > before presenting updated findings.
+>
+> **Resume pattern:** If prior comments already exist and follow an incremental pattern, skip
+> the strategy confirmation question and continue the established pattern directly.
+
+## Jira Comment Style
+
+Write all Jira comments in a natural, human tone — like a colleague giving a quick update, not a formatted report.
+
+- No em-dashes (`—`). Use a comma, period, or just end the sentence instead.
+- No bullet-heavy structure unless the content genuinely calls for a list.
+- Keep it conversational. Short sentences are fine.
+
+Bad: "Network check complete — Vincent's US South location is not routing through any of the approved IP ranges."
+Good: "Network check complete. Vincent's US South location is not routing through any of the approved IP ranges."
 
 Example after setup completes (fresh task — ticket fetched first, then git setup):
 ```
